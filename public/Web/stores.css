@@ -1,0 +1,204 @@
+body {
+    overflow-x: hidden;
+}
+
+.First {
+
+    height: 400px;
+}
+
+.head-image {
+    width: 1300px;
+    margin-left: -130px;
+}
+
+.text-stores {
+    color: #ffc713;
+}
+
+.shop {
+    position: absolute;
+    top: 350px;
+    left: 300px;
+    width: 250px;
+    height: 60px;
+    border: 1px solid #FFC713;
+    background-color: #FFC713;
+    font-size: 20px;
+    color: white;
+    border-radius: 10px;
+}
+
+.col-lg-12 {
+    position: relative;
+}
+
+.h1-paragraph {
+    text-align: center;
+    font-size: 100px;
+    font-family: "EB Garamond", serif;
+    margin-top: 80px;
+    font-weight: bold;
+    margin-left: 150px;
+    color: #ffc713;
+
+}
+
+.h1-description {
+    margin-left: 300px;
+
+}
+
+.backstores {
+    text-align: center;
+    font-family: "EB Garamond", serif;
+    font-size: 25px;
+    color: #ffc713;
+
+
+}
+
+.backHome {
+    text-align: center;
+    font-family: "EB Garamond", serif;
+
+    font-size: 20px;
+    color: #5e5c5c;
+}
+
+.backHome:hover:hover~.backstores {
+    font-size: 20px;
+    color: #5e5c5c;
+}
+
+.backHome:hover {
+
+    font-size: 25px;
+    color: #ffc713;
+}
+
+.backstores:hover {
+
+    font-size: 25px;
+    color: #ffc713;
+}
+
+.backstores:hover:hover~.backHome {
+    font-size: 20px;
+    color: #5e5c5c;
+}
+
+.row {
+    transition: all 0.40s;
+}
+
+.stores-img {
+    width: 200px;
+    border-radius: 180px;
+    border: 1px solid black;
+    transition: all 0.40s;
+    margin-top: 50px;
+}
+
+.stores-img:hover {
+    border: 5px solid #ffc713;
+    transform: scale(0.9);
+}
+.icon-header-noti::after {
+    content: attr(data-notify);
+    font-family: Poppins-Regular;
+    font-size: 12px;
+    color: #fff;
+    line-height: 15px;
+    text-align: center;
+    display: block;
+    position: absolute;
+    top: -7px;
+    right: -10px;
+    min-width: 15px;
+    height: 15px;
+    padding: 0 3px;
+    background-color: #ffca46;
+}
+.icon-header-item {
+    position: relative;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+}
+.img-text {
+    text-align: center;
+}
+
+.Stores-name {
+    font-family: "EB Garamond", serif;
+    font-size: 28px;
+    color: black;
+
+
+}
+
+.black {
+    border: 1px solid black;
+    background-color: black;
+    width: 100%;
+}
+.work .img{
+    width: 1150px;
+    right: 30px;
+}
+@media only screen and (min-width: 1024px) and (max-width: 1439px) {
+    .footer-contact {
+        width: 100%;
+    }
+.work .img{
+    width:1100px;
+  
+}
+
+
+}
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+
+
+    .h-footer {
+        font-size: 0px;
+        margin-top: 0px;
+width: 50%;
+    }
+
+    .d-footer {
+        font-size: 15px;
+    }
+    .work .img{
+width: 900px;
+
+    }
+    .img-text{
+        width: 30%;
+        margin-left: 20px;
+    }
+   
+}
+
+@media only screen and (max-width: 480px) {
+.stores-img{
+    width: 100px;
+    margin-left: 5px;
+
+}
+.img-text{
+    width: 30%;
+   
+}
+.Stores-name{
+    font-size: 10px;
+    margin-left: 0px;
+}
+}
+@media only screen and (max-width: 320px ) {
+    .Stores-name{
+        font-size: 10px;
+        margin-left: 25px;
+    }
+}

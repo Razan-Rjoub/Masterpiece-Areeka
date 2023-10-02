@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zxx">
+
+<head>
+    <title>Products</title>
+    <link rel="website icon" type="png" href="../images/web.png" >
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&family=Jost:wght@500;600;700&display=swap"
+        rel="stylesheet">
+  
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+  
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../bootstrap.min.css" rel="stylesheet">
+  
+    <!-- Template Stylesheet -->
+    <link href="../style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../navbar.css">
+    <link rel="stylesheet" href="../footer.css">
+    <link rel="stylesheet" href="./Products.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <!--::header part start::-->
+    <div class="container-xxl position-relative p-0">
+        <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+            <img src="../images/areeka.png" alt="Logo" class="logo">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav mx-auto py-0">
+                    <a href="../Home/Home.html" class="nav-item nav-link ">Home</a>
+                    <a href="../Stores/stores.html" class="nav-item nav-link active">Stores</a>
+                    <a href="#" class="nav-item nav-link">About</a>
+                    <a href="#" class="nav-item nav-link">Contact</a>
+                </div>
+                <!-- Add cart and heart icons -->
+                <a href="../Cart/cart.html"  class="nav-item nav-link"><div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
+                    data-notify="2"><i class="bi bi-cart"></i></div></a>
+                <a href="../wishlist/wishlist.html"  class="nav-item nav-link"><i class="bi bi-heart"></i></a>
+                <a href="../Register/Register.html?source=navbar" class=" btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Sign in</a>
+            </div>
+        </nav>
+
+        <div class="container-xxl bg-primary hero-header">
+            <div class="container px-lg-5">
+                <div class="row g-5 align-items-end">
+                    <div class="col-lg-6 text-center text-lg-start">
+                        <p class="text-white pb-3 store  "><a class="backHome"
+                            href="../Home/Home.html">Home</a></span><a class="backstores"
+                        href="../Stores/stores.html"><i class=" bi-dash"></i>Stores</a><a class="backProducts"
+                        href="../Products/Products.html"><i class=" bi-dash"></i>Ghurfaty</a></p>
+                        <!-- <a href="" class="btn btn-secondary py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Shop Now</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="fillters">
+
+            <span class="dropdown custom-dropdown">
+                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Category
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item " onclick="updateCategory('Bedrooms')" href="#">Bedrooms</a>
+                    <a class="dropdown-item dropdown-category " onclick="updateCategory('Chairs')" href="#">Chairs</a>
+                    <a class="dropdown-item dropdown-category" onclick="updateCategory('Outdoor Furniture')"
+                        href="#">Outdoor Furniture</a>
+                    <a class="dropdown-item dropdown-category" href="#"
+                        onclick="updateCategory('Kitchen Furniture')">Kitchen Furniture</a>
+                    <a class="dropdown-item dropdown-category" href="#" onclick="updateCategory('Tables')">Tables</a>
+                </div>
+            </span>
+
+
+
+
+            <span class="dropdown custom-dropdown">
+                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Price Range
+                </button>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">0-300</a>
+                    <a class="dropdown-item" href="#">300-600</a>
+                    <a class="dropdown-item" href="#">600-1000</a>
+                </div>
+            </span>
+
+
+            <span class="dropdown custom-dropdown ">
+                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Sort by
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Price Low to High</a>
+                    <a class="dropdown-item" href="#">Price High to Low</a>
+                </div>
+            </span>
+        </div>
+        <h6 class="category-select"></h6>
+        <section class="products">
+            <div class="row align-items-center latest_product_inner" id="product-container">
+
+            </div>
+        </section>
+        <section class="black">
+
+            <div class="row">
+                <div class="col-lg">
+                    <img src="../images/areeka.png" alt="logo" class="areeka-footer">
+                </div>
+                <div class="col-lg">
+
+                    <p class="qoute">Comfort is our priority to satisfy our customers, and we provide all the furniture
+                        that
+                        you can
+                        easily and quickly</p>
+                    <p>
+
+                    </p>
+                </div>
+                <div class="col-lg text-align">
+
+                    <p class="h-footer">Menu</p>
+                    <a href="">
+                        <p class="d-footer">Home</p>
+                    </a>
+                    <a href="">
+                        <p class="d-footer">Stores</p>
+                    </a>
+                    <a href="">
+                        <p class="d-footer">Contact</p>
+                    </a>
+                    <a href="">
+                        <p class="d-footer">About us</p>
+                    </a>
+                </div>
+                <div class="col-lg text-align">
+
+                    <p class="h-footer">Social</p>
+                    <a href="" class="d-footer-icon">
+                        <i class="bi bi-facebook d-footer-icon"></i>
+                    </a>
+                    <a href="" class="d-footer-icon">
+                        <i class="bi bi-instagram d-footer-icon"></i>
+                    </a>
+                    <a href="" class="d-footer-icon">
+                        <i class="bi bi-twitter d-footer-icon"></i>
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+        <section class="footer-contact">
+            <div class="row">
+                <div class="col-lg">
+                    <div class="Copyright"> Copyright © 2023 by Razan Alrjoub | All Right Reserved </div>
+                </div>
+                <div class="col-lg"><a href="">
+                        <p class="email">Areeka@gmail.com</p>
+                    </a></div>
+
+            </div>
+        </section>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    
+        <!-- Template Javascript -->
+        <script src="../js/main.js"></script>
+        <script src="Products.js"></script>
+</body>
+
+</html>

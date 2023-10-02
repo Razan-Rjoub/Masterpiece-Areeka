@@ -1,0 +1,222 @@
+.areeka-footer {
+    width: 400px;
+}
+
+.qoute {
+    color: #A69E9E;
+    font-family: "EB Garamond", serif;
+    font-size: 20px;
+    margin-top: 100px;
+
+
+}
+.black {
+    border: 1px solid black;
+    background-color: black;
+    width: 100%;
+    height: 400px;
+    margin-top: 70px;
+}
+.text-align {
+    text-align: center;
+}
+
+.h-footer {
+    color: white;
+    font-family: "EB Garamond", serif;
+    font-size: 25px;
+    margin-top: 100px;
+
+}
+
+.d-footer {
+    color: #A69E9E;
+    font-size: 20px;
+    font-family: "EB Garamond", serif;
+
+
+}
+
+.d-footer:hover {
+    text-decoration: underline;
+
+
+}
+
+.d-footer-icon {
+    padding: 15px;
+    font-size: 25px;
+    color: #6a6969;
+}
+
+.d-footer-icon:hover {
+    text-decoration: none;
+    margin-bottom: black;
+}
+
+.Copyright {
+    font-size: small;
+    color: #808080;
+    text-align: center;
+    margin-right: 200px;
+
+}
+
+.footer-contact {
+    background-color: black;
+    width: 100%;
+
+}
+
+.email {
+    color: #A69E9E;
+    font-family: "EB Garamond", serif;
+    font-size: 20px;
+    margin-left: 500px;
+}
+
+.email:hover {
+    text-decoration: underline;
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1439px) {
+    .footer-contact {
+        width: 1250px;
+    }
+
+    .d-footer-icon {
+        font-size: 20px;
+        padding: 5px;
+    }
+    .black{
+        width: 1250px;
+    
+    }
+    .Copyright{
+        margin-right: 0px;
+    }
+.h-footer{
+    font-size: 20px;
+}
+.d-footer{
+    font-size: 15px;
+}
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    .qoute {
+        margin-top: -10px;
+        padding: 10px;
+    }
+
+    .h-footer {
+        font-size: 20px;
+        margin-top: 0px;
+
+    }
+
+    .d-footer {
+        font-size: 15px;
+    }
+
+    .Copyright {
+        text-align: center;
+        margin-right: 300px;
+        font-size: 10px;
+
+    }
+
+    .footer-contact {
+        width: 100%;
+
+    }
+    .black{
+        height:500px;
+    }
+    .email {
+        font-size: 15px;
+        margin-left: 600px;
+    }
+
+    .areeka-footer {
+        width: 300px;
+    }
+    .text-align{
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .email {
+        font-size: 7px;
+        margin-left: 280px;
+    }
+
+    .qoute {
+        font-size: 12px;
+        margin-top: 0px;
+    }
+
+    .areeka-footer {
+        width: 130px;
+    }
+
+    .h-footer {
+        font-size: 10px;
+        margin-top: 0px;
+margin-left: 60px;
+
+    }
+
+    .d-footer {
+        font-size: 10px;
+    }
+
+    .footer-contact {
+        width: 100%;
+
+    }
+
+    .Copyright {
+       
+        margin-right: 100px;
+        font-size: 7px;
+
+    }
+    
+    .d-footer-icon{
+        font-size: 15px;
+        margin-left: 25px;
+    }
+    .black{
+        width: 400px;
+        width: 100%;
+        height: 300px;
+    }
+    .text-align{
+        width: 30%;
+    }
+    .qoute{
+        font-size: 8px;
+    }
+}
+@media only screen and (max-width: 320px ) {
+    .email{
+        margin-left: 250px;
+        font-size: 5px;
+    }
+    .d-footer-icon{
+        font-size: 10px;
+        margin-left: 20px;
+    }
+    .d-footer{
+        font-size: 8px;
+    }
+    .Copyright{
+        margin-right: 100px;
+        font-size: 5px;
+    }
+    .qoute{
+        font-size: 8px;
+    }
+}
