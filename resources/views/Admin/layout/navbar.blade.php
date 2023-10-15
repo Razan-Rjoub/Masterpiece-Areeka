@@ -321,6 +321,7 @@
                             <div>Provider</div>
                         </a>
                     </li>
+                 
             </aside>
             <!-- / Menu -->
 
@@ -371,7 +372,7 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('profile') }}">
+                                        <a class="dropdown-item" href="{{ route('profilee') }}">
                                             <i class="mdi mdi-account-outline me-2"></i>
                                             <span class="align-middle">My Profile</span>
                                         </a>
@@ -381,7 +382,7 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="auth-login-basic.html">
+                                        <a class="dropdown-item" href="   {{ route('logout') }}">
                                             <i class="mdi mdi-exit-to-app me-2"></i>
                                             <span class="align-middle">Log Out</span>
                                         </a>
@@ -392,3 +393,4 @@
                         </ul>
                     </div>
                 </nav>
+             

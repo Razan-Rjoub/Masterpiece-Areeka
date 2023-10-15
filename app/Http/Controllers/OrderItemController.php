@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\OrderItem;
 use App\Http\Requests\StoreOrderItemRequest;
 use App\Http\Requests\UpdateOrderItemRequest;
+use Auth;
 
 class OrderItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $orderitem = OrderItem::where('order_id', $id)->where('user_id',Auth::id())->with(['order','product','user','store'])->get();
+        // dd($orderitem);
+     
+        $order=Order::find($id);
+        // dd($order);
+        return view('profilee.orderdetails',compact('orderitem','order'));
     }
 
     /**

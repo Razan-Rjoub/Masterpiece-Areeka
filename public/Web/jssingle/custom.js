@@ -45,9 +45,9 @@ inputNumber($('.input-number'));
 
 
 
-  setInterval(function () {
-    makeTimer();
-  }, 1000);
+  // setInterval(function () {
+  //   makeTimer();
+  // }, 1000);
 
   // click counter js
 

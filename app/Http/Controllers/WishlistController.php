@@ -86,7 +86,7 @@ class WishlistController extends Controller
 
         } else {
             session()->put('wishlist', $id);
-            Alert::error('You must login first!')->autoClose()->footer('<a href="' . route("login") . '">Sign in here ?</a>');
+            Alert::error('You must login first!')->autoClose()->footer('<a href="' . route("register") . '">Sign in here ?</a>');
 
             return redirect()->back();
         }

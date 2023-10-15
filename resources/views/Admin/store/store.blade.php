@@ -18,8 +18,8 @@
                     <a href="{{ url('/store/create') }}"><button class=" btn btn-primary" tabindex="0" type="button"><span><i
                                     class="mdi mdi-plus me-0 me-sm-1"></i><span class="d-none d-sm-inline-block">Add
                                     Store</span></span></button></a>
-                    <div class="card-datatable table-responsive">
-                        <table class="datatables-category-list table">
+                    <div class="">
+                        <table class="table">
                             <thead class="table-light">
                                 <tr>
                                     <th>Store</th>

@@ -65,7 +65,7 @@
                                 @foreach ($orderitem as $item)
                                     <tr>
 
-                                        <td><img src="{{ $item->product->image }}"
+                                        <td><img src="{{ asset('images/product/' . $item->product->image) }}"
                                                 alt=""class="w-px-40 h-auto ">
                                             <span>{{ $item->product->name }} </span>
                                         </td>
@@ -109,63 +109,78 @@
                     </div>
                     <div class="card-body mt-3">
                         <ul class="timeline pb-0 mb-0">
+    
                             <li class="timeline-item timeline-item-transparent border-primary">
                                 <span class="timeline-point timeline-point-primary"></span>
                                 <div class="timeline-event">
                                     <div class="timeline-header">
-                                        <h6 class="mb-0">Order was placed (Order ID: #1)</h6>
-                                        <span class="text-muted">Tuesday 11:29 AM</span>
+                                        <h6 class="mb-0">Order was placed (Order ID: #{{ $order->id }})</h6>
+                                        <span class="text-muted">{{ $order->created_at }}</span>
                                     </div>
-                                    <p class="mt-2">Your order has been placed successfully</p>
+                                    <p class="mt-2" style="color: black">Your order has been placed successfully</p>
                                 </div>
                             </li>
-                            <li class="timeline-item timeline-item-transparent border-primary">
-                                <span class="timeline-point timeline-point-primary"></span>
-                                <div class="timeline-event">
-                                    <div class="timeline-header">
-                                        <h6 class="mb-0">Pick-up</h6>
-                                        <span class="text-muted">Wednesday 11:29 AM</span>
+                            {{-- <li class="timeline-item timeline-item-transparent border-primary">
+                                    <span class="timeline-point timeline-point-primary"></span>
+                                    <div class="timeline-event">
+                                        <div class="timeline-header">
+                                            <h6 class="mb-0">Pick-up</h6>
+                                            <span class="text-muted">Wednesday 11:29 AM</span>
+                                        </div>
+                                        <p class="mt-2">Pick-up scheduled with courier</p>
                                     </div>
-                                    <p class="mt-2">Pick-up scheduled with courier</p>
-                                </div>
-                            </li>
+                                </li> --}}
+    
                             <li class="timeline-item timeline-item-transparent border-primary">
-                                <span class="timeline-point timeline-point-primary"></span>
+                                <span
+                                    class="timeline-point {{ $order->status === 'Dispatched' || $order->status === 'out for delivery' || $order->status === 'Delivered' ? 'timeline-point-primary' : 'timeline-point-secondary' }}"></span>
+    
                                 <div class="timeline-event">
                                     <div class="timeline-header">
                                         <h6 class="mb-0">Dispatched</h6>
-                                        <span class="text-muted">Thursday 11:29 AM</span>
+                                        @if ($order->status === 'out for delivery' || $order->status === 'Delivered' || $order->status === 'Dispatched')
+                                            <span class="text-muted">{{ $order->updated_at }}</span>
+                                        @endif
                                     </div>
-                                    <p class="mt-2">Item has been picked up by courier</p>
+                                    <p class="mt-2" style="color: black">Item has been picked up by courier</p>
                                 </div>
                             </li>
-                            <li class="timeline-item timeline-item-transparent border-primary">
-                                <span class="timeline-point timeline-point-primary"></span>
-                                <div class="timeline-event">
-                                    <div class="timeline-header">
-                                        <h6 class="mb-0">Package arrived</h6>
-                                        <span class="text-muted">Saturday 15:20 AM</span>
+    
+                            {{-- <li class="timeline-item timeline-item-transparent border-primary">
+                                    <span class="timeline-point timeline-point-primary"></span>
+                                    <div class="timeline-event">
+                                        <div class="timeline-header">
+                                            <h6 class="mb-0">Package arrived</h6>
+                                            <span class="text-muted">Saturday 15:20 AM</span>
+                                        </div>
+                                        <p class="mt-2" style="color: black">Package arrived at an Amazon facility, NY</p>
                                     </div>
-                                    <p class="mt-2">Package arrived at an Amazon facility, NY</p>
-                                </div>
-                            </li>
+                                </li> --}}
+    
                             <li class="timeline-item timeline-item-transparent">
-                                <span class="timeline-point timeline-point-primary"></span>
+                                <span
+                                    class="timeline-point {{ $order->status === 'out for delivery' || $order->status === 'Delivered' ? 'timeline-point-primary' : 'timeline-point-secondary' }}"></span>
                                 <div class="timeline-event">
                                     <div class="timeline-header">
-                                        <h6 class="mb-0">Dispatched for delivery</h6>
-                                        <span class="text-muted">Today 14:12 PM</span>
+                                        <h6 class="mb-0">Out For Delivery</h6>
+                                        @if ($order->status === 'out for delivery' || $order->status === 'Delivered')
+                                            <span class="text-muted">{{ $order->updated_at }}</span>
+                                        @endif
                                     </div>
-                                    <p class="mt-2">Package has left an Amazon facility, NY</p>
+                                    <p class="mt-2" style="color: black">Package has left</p>
                                 </div>
                             </li>
                             <li class="timeline-item timeline-item-transparent border-transparent pb-0">
-                                <span class="timeline-point timeline-point-secondary"></span>
+                                <span
+                                    class="timeline-point {{ $order->status === 'Delivered' ? 'timeline-point-primary' : 'timeline-point-secondary' }}"></span>
                                 <div class="timeline-event pb-0">
                                     <div class="timeline-header">
                                         <h6 class="mb-0">Delivery</h6>
+                                        @if ($order->status === 'Delivered')
+                                            <span class="text-muted">{{ $order->updated_at }}</span>
+                                        @endif
                                     </div>
-                                    <p class="mt-2 mb-0">Package will be delivered by tomorrow</p>
+                                    <p class="mt-2 mb-0" style="color: black">Package delivered </p>
                                 </div>
                             </li>
                         </ul>

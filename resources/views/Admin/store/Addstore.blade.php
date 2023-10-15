@@ -41,7 +41,7 @@
                                     <span style="color: red">{{ $message }}</span>
                                 @enderror
                                 </span><br>
-                                <button type="submit" class="btn btn-primary">Add Store</button>
+                                <a href=""><button type="submit" class="btn btn-primary">Add Store</button></a>
                             </form>
                         </div>
                     </div>

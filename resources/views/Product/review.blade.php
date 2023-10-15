@@ -27,31 +27,25 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i> 0{{ $four }} </a>
+                                    0{{ $four }} </a>
                             </li>
                             <li>
                                 <a href="#">3 Star
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i> 0{{ $three }} </a>
+                                    0{{ $three }} </a>
                             </li>
                             <li>
                                 <a href="#">2 Star
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i> 0{{ $two }} </a>
+                                    0{{ $two }} </a>
                             </li>
                             <li>
                                 <a href="#">1 Star
                                     <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>0{{ $one }} </a>
+                                    0{{ $one }} </a>
                             </li>
                         </ul>
                     </div>
@@ -71,37 +65,42 @@
                                         </div>
                                         <div class="media-body">
                                             <h4>{{ $item->user->name }} </h4>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                @if ($i <= $item->rate)
+                                                    <i class="fa fa-star"></i>
+                                                @else
+                                                    <i class="fa fa-star-o"></i> <!-- Empty star for remaining stars -->
+                                                @endif
+                                            @endfor
+                                            <p class="col-lg-9">
+                                                {{ $item->comment }}
+                                            </p>
                                         </div>
                                     </div>
-                                    <p class="col-lg-9">
-                                        {{ $item->comment }}
-                                    </p>
+
                                 </div>
                             @endforeach
                         </div>
-                        
-                        <button class="btn read-more-btn" style="border-radius:20px;color:white;background-color:#ff9900;box-shadow:-1.717px 8.835px 29.76px 2.24px rgba(255, 51, 104, 0.18);line-height: 38px;padding: 0px 30px;font-size:13px" id="show-more-btn">Show More</button>
+
+                        <button class="btn read-more-btn"
+                            style="border-radius:20px;color:white;background-color:#ff9900;box-shadow:-1.717px 8.835px 29.76px 2.24px rgba(255, 51, 104, 0.18);line-height: 38px;padding: 0px 30px;font-size:13px"
+                            id="show-more-btn">Show More</button>
                     </div>
                 </div>
             </div>
-            
+
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>
-                $(document).ready(function () {
-                    $('.hidden-review').hide(); 
-            
+                $(document).ready(function() {
+                    $('.hidden-review').hide();
+
                     if ($('.hidden-review').length > 0) {
                         $('#show-more-btn').show();
                     }
-                    
-                    $('#show-more-btn').on('click', function () {
-                        $('.hidden-review').toggle(); 
-                        
+
+                    $('#show-more-btn').on('click', function() {
+                        $('.hidden-review').toggle();
+
                         if ($(this).text() === 'Show More') {
                             $(this).text('Show Less');
                         } else {
@@ -110,4 +109,3 @@
                     });
                 });
             </script>
-            

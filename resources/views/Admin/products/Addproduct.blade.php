@@ -165,7 +165,7 @@
                                         id="flexSwitchCheckChecked" checked />
 
                                 </div>
-                                <button type="submit" class="btn btn-primary">Add Product</button>
+                                <a href=""><button type="submit" class="btn btn-primary">Add Product</button></a> 
                             </form>
                         </div>
                     </div>

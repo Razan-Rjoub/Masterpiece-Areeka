@@ -13,13 +13,12 @@ class HomeController extends Controller
         if(Auth::id()){
             $role=Auth()->user()->Role;
             if($role=='customer'){
+                $category=Category::all();
+                $store=Store::take(4)->get();  
                 session()->put('name', Auth()->user()->name);
                 session()->put('image',Auth()->user()->image);
-                
-
-                $category=Category::all();
-                $store=Store::take(4)->get();
                 return view('Home.home',compact('category','store'));
+              
             }
             else if($role=='admin'){
                 return redirect()->route('index');

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,42 +17,56 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function index(){
-        if(Auth::id()){
-            $user=User::find(Auth::id());
+    public function index()
+    {
+        if (Auth::id()) {
+            $user = User::find(Auth::id());
+            session()->put('name', Auth()->user()->name);
+            session()->put('image', Auth()->user()->image);
+           
+                $orderitem = Order::where('user_id', Auth::id())->orderBy('created_at')->get();
+                
             
-        return view('profilee.profile',compact('user'));}
+            return view('profilee.combine', compact('user','orderitem'));
+        }
     }
     public function edit(Request $request)
     {
 
-        $request-> validate ([
+        $request->validate([
             'name' => 'required|string',
             'email' => 'required|email',
-            'phone' =>  'required',
+            'phone' => 'required',
             'regex:/^(079|078|077)\d{7}$/|max:10',
             'address' => 'required|string',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $data['name'] = $request->name;
         $data['email'] = $request->email;
         $data['phone'] = $request->phone;
-        $data['Address']=$request->address;
+        $data['Address'] = $request->address;
 
         $filename = '';
         if ($request->hasFile('image')) {
             $filename = $request->getSchemeAndHttpHost() . '/images/customer/' . time() . '.' . $request->image->extension();
             $request->image->move(public_path('/images/customer/'), $filename);
             $data['image'] = $filename;
-        }
-        else {
+        } else {
             unset($request->image);
         }
         $id = Auth::id();
         User::where(['id' => $id])->update($data);
-        return redirect()->route('profilee')->with([
-            'success' => 'updated successfully'
-        ]);
+
+        if (Auth::id()) {
+            $user = User::find(Auth::id());
+            session()->put('name', Auth()->user()->name);
+            session()->put('image', Auth()->user()->image);
+           
+                $orderitem = Order::where('user_id', Auth::id())->orderBy('created_at')->get();
+                
+            
+            return view('profilee.combine', compact('user','orderitem'));
+        }
 
     }
 
@@ -90,4 +106,5 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
 }

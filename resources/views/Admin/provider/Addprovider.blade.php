@@ -41,8 +41,8 @@
                     <label for="store" class="form-label">Store</label>
                     <select class="form-select" id="store" aria-label="Default select example" name="store" >
                         @foreach ($store as $item)
-                        <option   value="{{$item->id}}">{{$item->name}} </option>
-                        <input type="hidden" name='storename' value="{{$item->name}}">
+                        <option   value="{{$item->id}}:{{$item->name}}">{{$item->name}} </option>
+                        {{-- <input type="hidden" name='storename' value="{{$item->name}}"> --}}
                         @endforeach
                     </select>
      

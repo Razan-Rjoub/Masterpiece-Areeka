@@ -34,10 +34,10 @@ class AuthenticatedSessionController extends Controller
         if (session()->has('wishlist')) {
             return redirect()->route('singleproduct', ['id' => $id]);
 
-        } else if (session()->has('checkout')) {
-
-            return redirect()->route('checkout');
-        } else {
+        }else if (!session()->has('cartPageReloaded')&&session()->has('checkout') ) {
+            session(['cartPageReloaded' => true]);
+            return redirect()->route('cart');
+        }else {
             return redirect(RouteServiceProvider::HOME);
         }
     }

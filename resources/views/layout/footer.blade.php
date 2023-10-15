@@ -1,7 +1,7 @@
 <section class="black">
     <div class="row">
       <div class="col-lg">
-        <img src="../images/areeka.png" alt="logo" class="areeka-footer">
+        <img src="{{asset('images/areeka.png')}}" alt="logo" class="areeka-footer">
       </div>
       <div class="col-lg">
 

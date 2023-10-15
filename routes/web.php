@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WishlistController;
+use App\Models\OrderItem;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
@@ -89,3 +91,8 @@ Route::post('/checkoutcreate', [CartController::class, 'create'])->middleware(['
 Route::view('/thankyou', 'thankyou');
 Route::get('/profileuser', [ProfileController::class, 'index'])->name('profilee');
 Route::post('/editprofile', [ProfileController::class, 'edit'])->name('editprofile');
+// Route::get('/profileuser', [ProfileController::class, 'index'])->name('profilee');
+// Route::get('/orderprofile', [ProfileController::class, 'orderprofile'])->name('profilee');
+Route::get('/orderitem/{id}', [OrderItemController::class, 'index'])->name('orderdetails');
+Route::get('/review/{product_id}/{store_id}', [ReviewController::class, 'reviewcustomer'])->name('review');
+Route::post('/reviewstore', [ReviewController::class, 'store'])->name('reviewstore');

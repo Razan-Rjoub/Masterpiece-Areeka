@@ -26,6 +26,7 @@
     <link href="{{ asset('Web/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('Web/navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('Web/footer.css') }}">
+    
     <style>
         .active {
             color: #ffc713;
@@ -36,7 +37,7 @@
 <body>
     <div class="container-xxl position-relative p-0" style="height: 100%;">
         <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-            <img src="../images/areeka.png" alt="Logo" class="logo">
+            <img src="{{asset('images/areeka.png')}}" alt="Logo" class="logo">
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars"></span>
@@ -106,7 +107,7 @@
                             <!--/ User -->
                         </ul>
                     @else
-                        <a href="{{ route('login') }}"
+                        <a href="{{ route('register') }}"
                             class=" btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Sign in</a>
                             @endauth
 								@endif

@@ -50,6 +50,9 @@ class ProviderController extends Controller
         else {
             unset($request->image);
         }
+        $store = $request->input('store');
+        list($id, $name) = explode(':', $store);
+
         User::create([
             'name' => $request->providername,
             'image' => $filename,
@@ -57,8 +60,8 @@ class ProviderController extends Controller
             'email' => $request->email,
             'password'=>bcrypt($request->password),
             'Role'=>'provider',
-            'store'=>$request->store,
-            'storename'=>$request->storename
+            'store'=>$id,
+            'storename'=>$name
         ]);
         Alert::success('success', 'Provider Added Successfully');
         return redirect('provider');

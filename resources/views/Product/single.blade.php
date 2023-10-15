@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="{{ asset('Web/csssingle/style.css') }}">
     <link rel="stylesheet" href="{{ asset('Web/csssingle/single.css') }}">
     <div class="product_image_area section_padding">
-        <div class="container">
+        <div class="">
             @include('sweetalert::alert')
             <div class="row  ">
-                <img src="{{ $product->image }}" />
-                <div class="col-lg-2 col-sm-12 col-md-3 imgprod"> <img src="{{ $product->image2 }}" />
-                    <img src="{{ $product->image3 }}" />
-                    <img src="{{ $product->image4 }}" />
+                <img src="{{ asset('images/product/' . $product->image) }}" />
+                <div class="col-lg-2 col-sm-12 col-md-3 imgprod"> <img src="{{ asset('images/product/' . $product->image2) }}" />
+                    <img src="{{ asset('images/product/' . $product->image3) }}" />
+                    <img src="{{ asset('images/product/' . $product->image4) }}" />
                 </div>
 
                 <div class="col-lg-5 col-xl-4">

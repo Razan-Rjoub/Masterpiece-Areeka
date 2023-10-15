@@ -12,7 +12,7 @@
 
             <!-- customers List Table -->
             <div class="card">
-              @include('sweetalert::alert')
+                @include('sweetalert::alert')
                 <div class=" table-responsive">
                     <table class="datatables-customers-lists table">
                         <thead class="table-light">
@@ -33,7 +33,7 @@
                                         <div class="d-flex justify-content-start align-items-center customer-name">
                                             <div class="avatar-wrapper">
                                                 <div class="avatar me-3 rounded-2 bg-label-secondary"><img
-                                                        src="{{ $item->product->image }}" alt="Product-9" class="rounded-2">
+                                                    src="{{ asset('images/product/' . $item->product->image) }}" alt="Product-9" class="rounded-2">
                                                 </div>
                                             </div>
                                             <div class="d-flex flex-column"><span
@@ -43,17 +43,17 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{{$item->store->name}} </td>
+                                    <td>{{ $item->store->name }} </td>
                                     <td>
                                         <div class="d-flex justify-content-start align-items-center customer-name">
                                             <div class="avatar-wrapper me-3">
-                                                <div class="avatar avatar-sm"><img src="{{$item->user->image}} "
+                                                <div class="avatar avatar-sm"><img src="{{ $item->user->image }} "
                                                         alt="Avatar" class="rounded-circle"></div>
                                             </div>
                                             <div class="d-flex flex-column"><a
                                                     href="app-ecommerce-customer-details-overview.html"><span
-                                                        class="fw-medium">{{$item->user->name}}</span></a><small
-                                                    class="text-nowrap">{{$item->user->email}}</small></div>
+                                                        class="fw-medium">{{ $item->user->name }}</span></a><small
+                                                    class="text-nowrap">{{ $item->user->email }}</small></div>
                                         </div>
                                     </td>
 
@@ -86,30 +86,27 @@
                                             </svg></div>
                 </div>
             </div>
-           <small class="text-break pe-3">{{$item->comment}} </small>
+            <small class="text-break pe-3">{{ $item->comment }} </small>
         </div>
         </td>
-        <td>{{$item->created_at}} </td>
+        <td>{{ $item->created_at }} </td>
         <td>
-        <div class="dropdown">
-          <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-              data-bs-toggle="dropdown">
-              <i class="mdi mdi-dots-vertical"></i>
-          </button>
+            <div class="dropdown">
+                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                    <i class="mdi mdi-dots-vertical"></i>
+                </button>
 
-          <div class="dropdown-menu">
+                <div class="dropdown-menu">
 
-              <form method="POST" onclick="confirmation(event)"
-                  action="{{ url('/review/' . $item->id) }}">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit" class="dropdown-item"><i
-                          class="mdi mdi-trash-can me-1"></i>
-                      Delete</button>
-              </form>
+                    <form method="POST" onclick="confirmation(event)" action="{{ url('/review/' . $item->id) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="dropdown-item"><i class="mdi mdi-trash-can me-1"></i>
+                            Delete</button>
+                    </form>
 
-          </div>
-      </div>
+                </div>
+            </div>
         </td>
         </tr>
         @endforeach

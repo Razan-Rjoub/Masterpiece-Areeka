@@ -75,7 +75,7 @@
                     @if ($item->status == 'active')
                         <div class="col-lg-4 col-sm-6">
                             <div class="single_product_item">
-                                <a href="{{ route('singleproduct', ['id' => $item->id]) }}"><img  style="height: 400px" src="{{ $item->image }}"
+                                <a href="{{ route('singleproduct', ['id' => $item->id]) }}"><img  style="height: 400px" src="{{ asset('images/product/' . $item->image) }}"
                                         alt=""></a>
                                 <div class="single_product_text">
                                     <h4>{{ $item->name }} </h4>

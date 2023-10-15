@@ -2,6 +2,7 @@
 @section('title','Admin-profile')
 
 	@section('content')
+
     <div class="content-wrapper">
 
         <!-- Content -->

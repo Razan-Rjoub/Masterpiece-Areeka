@@ -45,14 +45,13 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-
         if (session()->has('wishlist')) {
             $id = session('wishlist');
             return redirect()->route('singleproduct', ['id' => $id]);
 
         } else if (session()->has('checkout')) {
 
-            return redirect()->route('checkout');
+            return redirect()->route('cart');
         } else {
             return redirect(RouteServiceProvider::HOME);
         }

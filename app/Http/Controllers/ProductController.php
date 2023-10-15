@@ -60,10 +60,12 @@ class ProductController extends Controller
         }
     }
     public function store(Request $request)
-    {
+    { 
+        // dd($request);
         if (Auth::id()) {
             $role = Auth()->user()->Role;
             if ($role == 'admin') {
+               
                 $request->validate([
                     'productname' => 'required|string',
                     'image' => 'required|image|mimes:jpeg,png,jpg,gif,jfif|max:2048',
@@ -81,21 +83,24 @@ class ProductController extends Controller
                     'longdescription'=>'required'
 
                 ]);
-                $filenames = [];
+                $image = time() . '_' . $request->file('image')->getClientOriginalName();
+                $request->file('image')->move(public_path('images/product'), $image);
+        
+                $image2 = time() . '_' . $request->file('image2')->getClientOriginalName();
+                $request->file('image2')->move(public_path('images/product'), $image2);
+        
+                $image3 = time() . '_' . $request->file('image3')->getClientOriginalName();
+                $request->file('image3')->move(public_path('images/product'), $image3);
                 
-                foreach (['image', 'image2', 'image3', 'image4'] as $key) {
-                    if ($request->hasFile($key)) {
-                        $filename = $request->getSchemeAndHttpHost() . '/images/product/' . time() . '.' . $request->$key->extension();
-                        $request->$key->move(public_path('/images/product/'), $filename);
-                        $filenames[$key] = $filename;
-                    }
-                }
+                $image4 = time() . '_' . $request->file('image4')->getClientOriginalName();
+                $request->file('image4')->move(public_path('images/product'), $image4);
+
                 Product::create([
                     'name' => $request->productname,
-                    'image' => $filenames['image'],
-                    'image2' =>  $filenames['image2'],
-                    'image3' =>  $filenames['image3'],
-                    'image4' => $filenames['image4'],
+                    'image' => $image,
+                    'image2' =>  $image2,
+                    'image3' =>  $image3,
+                    'image4' => $image4,
                     'price' => $request->price,
                     'quantity' => $request->quantity,
                     'descrption' => $request->description,
@@ -120,64 +125,64 @@ class ProductController extends Controller
                 Alert::success('success', 'product Added Successfully');
                 return redirect('product');
             } else if ($role == 'provider') {
-                $user = User::find(Auth::id());
-                $request->validate([
-                    'productname' => 'required|string',
-                    'image' => 'required|image|mimes:jpeg,png,jpg,gif,jfif|max:2048',
-                    'price' => 'required|numeric',
-                    'quantity' => 'required|numeric',
-                    'description' => 'required',
-                    'image2' => 'required|image|mimes:jpeg,png,jpg,gif,jfif|max:2048',
-                    'image3' => 'required|image|mimes:jpeg,png,jpg,gif,jfif|max:2048',
-                    'image4' => 'required|image|mimes:jpeg,png,jpg,gif,jfif|max:2048',
-                    'width' => 'required',
-                    'height' => 'required',
-                    'depth' => 'required',
-                    'weight' => 'required',
-                    'qualitycheck' => 'required',
-                    'longdescription' => 'required'
-                ]);
+                // $user = User::find(Auth::id());
+                // $request->validate([
+                //     'productname' => 'required|string',
+                //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,jfif|max:2048',
+                //     'price' => 'required|numeric',
+                //     'quantity' => 'required|numeric',
+                //     'description' => 'required',
+                //     'image2' => 'required|image|mimes:jpeg,png,jpg,gif,jfif|max:2048',
+                //     'image3' => 'required|image|mimes:jpeg,png,jpg,gif,jfif|max:2048',
+                //     'image4' => 'required|image|mimes:jpeg,png,jpg,gif,jfif|max:2048',
+                //     'width' => 'required',
+                //     'height' => 'required',
+                //     'depth' => 'required',
+                //     'weight' => 'required',
+                //     'qualitycheck' => 'required',
+                //     'longdescription' => 'required'
+                // ]);
                 
-                $filenames = [];
+                // $filenames = [];
                 
-                foreach (['image', 'image2', 'image3', 'image4'] as $key) {
-                    if ($request->hasFile($key)) {
-                        $filename = $request->getSchemeAndHttpHost() . '/images/product/' . time() . '.' . $request->$key->extension();
-                        $request->$key->move(public_path('/images/product/'), $filename);
-                        $filenames[$key] = $filename;
-                    }
-                }
+                // foreach (['image', 'image2', 'image3', 'image4'] as $key) {
+                //     if ($request->hasFile($key)) {
+                //         $filename = $request->getSchemeAndHttpHost() . '/images/product/' . time() . '.' . $request->$key->extension();
+                //         $request->$key->move(public_path('/images/product/'), $filename);
+                //         $filenames[$key] = $filename;
+                //     }
+                // }
 
-                Product::create([
-                    'name' => $request->productname,
-                    'image' => $filenames['image'], 
-                    'image2' => $filenames['image2'],
-                    'image3' => $filenames['image3'],
-                    'image4' => $filenames['image4'],
+                // Product::create([
+                //     'name' => $request->productname,
+                //     'image' => $image, 
+                //     'image2' => $image2,
+                //     'image3' => $image3,
+                //     'image4' => $image4,
 
-                    'price' => $request->price,
-                    'quantity' => $request->quantity,
-                    'descrption' => $request->description,
-                    'store_id' => $request->store_id,
-                    'category_id' => $request->category_id,
-                    'stock' => $request->stock,
-                    'status' => 'pending',
-                    'descrptionLong'=>$request->longdescription,
-                    'width'=>$request->width,
-                    'height'=>$request->height,
-                    'Depth'=>$request->depth,
-                    'Weight'=>$request->weight,
-                    'Qualitycheck'=>$request->qualitycheck,
-                ]);
-                $product = Product::where('store_id', $request->store_id)->with('store')->get();
-                $totalearning = Product::where('store_id', $request->store_id)->with('store')->sum('price');
-                $totalProducts = $product->count();
-                $store = Store::find($request->store_id);
-                $store->totalproduct = $totalProducts;
-                $store->totalearning = $totalearning;
-                $store->save();
-                Alert::success('success', 'product Added Successfully');
-                return redirect('product');
+                //     'price' => $request->price,
+                //     'quantity' => $request->quantity,
+                //     'descrption' => $request->description,
+                //     'store_id' => $request->store_id,
+                //     'category_id' => $request->category_id,
+                //     'stock' => $request->stock,
+                //     'status' => 'pending',
+                //     'descrptionLong'=>$request->longdescription,
+                //     'width'=>$request->width,
+                //     'height'=>$request->height,
+                //     'Depth'=>$request->depth,
+                //     'Weight'=>$request->weight,
+                //     'Qualitycheck'=>$request->qualitycheck,
+                // ]);
+                // $product = Product::where('store_id', $request->store_id)->with('store')->get();
+                // $totalearning = Product::where('store_id', $request->store_id)->with('store')->sum('price');
+                // $totalProducts = $product->count();
+                // $store = Store::find($request->store_id);
+                // $store->totalproduct = $totalProducts;
+                // $store->totalearning = $totalearning;
+                // $store->save();
+                // Alert::success('success', 'product Added Successfully');
+                // return redirect('product');
             }
 
         }

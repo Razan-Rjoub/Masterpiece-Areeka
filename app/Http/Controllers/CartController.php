@@ -21,7 +21,9 @@ class CartController extends Controller
      */
     public function index()
     {
+       
         $usercart = Cart::where('user_id', Auth::id())->with('product')->get();
+
         if (Auth::id()) {
             $cartData = session()->get('cart', []);
             foreach ($cartData as $cartItem) {
@@ -33,16 +35,18 @@ class CartController extends Controller
                     'Totalprice' => $cartItem['price'] * $cartItem['quantity']
                 ]);
             }
+            $cartcount = Cart::where('user_id', Auth::id())->count();
+            session(['cartCount' => $cartcount]);
 
             session()->forget('cart');
 
             $cart = Cart::where('user_id', Auth::id())->first();
 
-            if ($cart) {
-                return view('cart.cart', compact('usercart'));
-            } else {
-                return view('cart.cart', compact('usercart'));
-            }
+            // if ($cart) {
+                return view('cart.cart', compact('usercart'))->with('reload', true);;
+            // } else {
+                // return view('cart.cart', compact('usercart'));
+            // }
         } else
             return view('cart.cart', compact('usercart'));
 
@@ -227,7 +231,7 @@ class CartController extends Controller
             return view('cart.checkout', compact('user', 'cart'));
         } else {
             session()->put('checkout', 'check');
-            Alert::error('You must login first!')->autoClose()->footer('<a href="' . route("login") . '">Sign in here ?</a>');
+            Alert::error('You must login first!')->autoClose()->footer('<a href="' . route("register") . '">Sign in here ?</a>');
             return redirect()->back();
         }
 

@@ -56,8 +56,33 @@
 
     <!-- Menu waves for no-customizer fix -->
     <link rel="stylesheet" href="{{ asset('Admin/assets/vendor/libs/node-waves/node-waves.css') }}" />
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                '../../../../www.googletagmanager.com/gtm5445.html?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5DDHKGP');
+    </script>
+    <!-- End Google Tag Manager -->
 
-    <!-- Core CSS -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../images/web.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;ampdisplay=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('Admin/assets/vendor/css/rtl/core.css') }}"
         class="template-customizer-core-css" />
     <link rel="stylesheet" href="{{ asset('Admin/assets/vendor/css/rtl/theme-default.css') }}"
@@ -80,9 +105,9 @@
     <link rel="stylesheet" href="{{ asset('Admin/assets/vendor/libs/quill/katex.css') }}">
     <link rel="stylesheet" href="{{ asset('Admin/assets/vendor/libs/quill/editor.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/dropzone/dropzone.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/tagify/tagify.css') }}" />
+    <link rel="stylesheet" href="{{ asset('Admin/assets/vendor/libs/dropzone/dropzone.css') }}">
+    <link rel="stylesheet" href="{{ asset('Admin/assets/vendor/libs/flatpickr/flatpickr.css') }}">
+    <link rel="stylesheet" href="{{ asset('Admin/assets/vendor/libs/tagify/tagify.css') }}" />
     <!-- Page CSS -->
 
     <link rel="stylesheet" href="{{ asset('Admin/assets/vendor/css/pages/app-ecommerce.css') }}">
@@ -169,11 +194,11 @@
             border: 1px solid gray;
         }
     </style>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> --}}
 </head>
 
 <body>
-
-
     <!-- ?PROD Only: Google Tag Manager (noscript) (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DDHKGP" height="0" width="0"
             style="display: none; visibility: hidden"></iframe></noscript>
@@ -224,8 +249,16 @@
                                     <div>order list</div>
                                 </a>
                             </li>
+                         
                         </ul>
-        
+                      
+   <li class="menu-item {{ request()->is('review') ? 'active' : '' }}">
+                                <a href="{{ asset('/review') }}" class="menu-link">
+                                    <i class="menu-icon tf-icons mdi mdi-star"></i>
+                                    <div>Reviews</div>
+                                </a>
+                            </li>
+                      
             </aside>
             <!-- / Menu -->
 
@@ -265,7 +298,7 @@
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="images/FZ2_8041.JPG" alt class="w-px-40 h-auto rounded-circle" />
+                                        <img src="images/istockphoto-1130884625-612x612.JPG" alt class="w-px-40 h-auto rounded-circle" />
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -276,7 +309,7 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('profile') }}">
+                                        <a class="dropdown-item" href="{{ route('profilee') }}">
                                             <i class="mdi mdi-account-outline me-2"></i>
                                             <span class="align-middle">My Profile</span>
                                         </a>
@@ -286,7 +319,7 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="auth-login-basic.html">
+                                        <a class="dropdown-item" href="{{ route('logout') }}">
                                             <i class="mdi mdi-exit-to-app me-2"></i>
                                             <span class="align-middle">Log Out</span>
                                         </a>

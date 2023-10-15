@@ -27,13 +27,13 @@
     color: $color;
     &:hover,
     &:focus {
-      background-color: $hover-background;
-      color: $color;
+      background-color:#ffc713;
+      color: #ffc713;
     }
 
     &.active {
-      border-color: $background;
-      background-color: $background;
+      border-color:#ffc713;
+      background-color: #ffc713;
       color: if($color, $color, color-contrast($background));
     }
   }
@@ -46,8 +46,8 @@
     &,
     &:hover,
     &:focus {
-      border-color: $background;
-      background-color: $background;
+      border-color: #ffc713;
+      background-color: #ffc713;
     }
   }
 }

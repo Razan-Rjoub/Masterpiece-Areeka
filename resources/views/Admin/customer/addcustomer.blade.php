@@ -61,7 +61,7 @@
 
             
                    
-                    <button type="submit" class="btn btn-primary">Add Customer</button>
+                   <a href=""><button type="submit" class="btn btn-primary">Add Customer</button></a> 
                   </form>
                 </div>
               </div>

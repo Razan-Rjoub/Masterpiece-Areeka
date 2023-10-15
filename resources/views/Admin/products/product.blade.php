@@ -30,7 +30,8 @@
                                     @foreach ($product as $item)
 
                                         <tr>
-                                            <td><img src="{{ $item->image }}" alt="" style="width: 50px;"><i
+                                            <td><img src="{{ asset('images/product/' . $item->image) }}" alt="" style="width: 50px;">
+                                                <i
                                                     class="fab fa-angular fa-lg text-danger me-3"></i>
                                                 <strong>{{ $item->name }} </strong>
                                             </td>

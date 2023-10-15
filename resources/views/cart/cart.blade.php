@@ -19,7 +19,16 @@
     <div class="main-content-wrapper d-flex clearfix">
 
         <!-- Header Area End -->
-
+        @if(session('cartPageReloaded'))
+        <script>
+            // Reload the page after a short delay (e.g., 1 second)
+            setTimeout(function() {
+                location.reload();
+            }, 1000);
+    
+            @php session()->forget('cartPageReloaded') @endphp
+        </script>
+    @endif
         <div class="cart-table-area section-padding-100">
             @include('sweetalert::alert')
             <div class="container-fluid">
@@ -50,7 +59,8 @@
                                                     <tr class="table_row" rowId={{ $item }}>
                                                         <td class="column-1">
                                                             <div class="how-itemcart1">
-                                                                <img src="{{ $details['image'] }}" alt="IMG">
+                                                                <img src="{{ asset('images/product/' . $details['image']) }}"
+                                                                alt="IMG">
                                                             </div>
                                                         </td>
                                                         <td class="column-2">{{ $details['name'] }} </td>
@@ -87,7 +97,7 @@
                                                         <tr class="table_row">
                                                             <td class="column-1">
                                                                 <div class="how-itemcart1">
-                                                                    <img src="{{ $item->product->image }}" alt="IMG">
+                                                                    <img src="{{ asset('images/product/' . $item->product->image) }}" alt="IMG">
                                                                 </div>
                                                             </td>
                                                             <td class="column-2">{{ $item->product->name }} </td>
@@ -212,4 +222,21 @@
             </div>
         </div>
     </div>
+    {{-- <script>
+    const urlParams = new URLSearchParams(window.location.search);
+const reloadParam = urlParams.get('reload');
+
+// Create a flag variable to track whether the page has been reloaded
+let pageReloaded = false;
+
+// Check if the "reload" parameter is present and the page hasn't been reloaded already
+if (reloadParam === '1' && !pageReloaded) {
+    // Mark the page as reloaded to prevent future reloads
+    pageReloaded = true;
+    
+    // Reload the page after a short delay (e.g., 1 second)
+    setTimeout(function() {
+        location.reload();
+    }, 1000);}
+    </script> --}}
 @endsection

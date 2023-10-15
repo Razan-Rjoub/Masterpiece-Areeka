@@ -15,11 +15,11 @@
 <!-- Category List Table -->
 @include('sweetalert::alert')
 <div class="card">
-  {{-- <a href="{{ url('/category/create') }}"><button class=" btn btn-primary" tabindex="0" type="button"><span><i
+  <a href="{{ url('/category/create') }}"><button class=" btn btn-primary" tabindex="0" type="button"><span><i
     class="mdi mdi-plus me-0 me-sm-1"></i><span class="d-none d-sm-inline-block">Add
-    category</span></span></button></a> --}}
-<div class="card-datatable table-responsive">
-  <table class="datatables-category-list table">
+    category</span></span></button></a>
+<div class="">
+  <table class="table">
     <thead class="table-light">
       <tr>
         <th class="text-nowrap" >Categories</th>
