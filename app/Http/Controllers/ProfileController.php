@@ -23,11 +23,11 @@ class ProfileController extends Controller
             $user = User::find(Auth::id());
             session()->put('name', Auth()->user()->name);
             session()->put('image', Auth()->user()->image);
-           
-                $orderitem = Order::where('user_id', Auth::id())->orderBy('created_at')->get();
-                
-            
-            return view('profilee.combine', compact('user','orderitem'));
+
+            $orderitem = Order::where('user_id', Auth::id())->orderBy('created_at')->get();
+
+
+            return view('profilee.combine', compact('user', 'orderitem'));
         }
     }
     public function edit(Request $request)
@@ -61,11 +61,9 @@ class ProfileController extends Controller
             $user = User::find(Auth::id());
             session()->put('name', Auth()->user()->name);
             session()->put('image', Auth()->user()->image);
-           
-                $orderitem = Order::where('user_id', Auth::id())->orderBy('created_at')->get();
-                
-            
-            return view('profilee.combine', compact('user','orderitem'));
+
+            $orderitem = Order::where('user_id', Auth::id())->orderBy('created_at')->get();
+            return view('profilee.combine', compact('user', 'orderitem'));
         }
 
     }

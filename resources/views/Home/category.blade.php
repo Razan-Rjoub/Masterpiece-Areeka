@@ -6,7 +6,7 @@
                 <div class="single_feature_post_text">
                     <p>Premium Quality</p>
                     <h2>{{ $feature['name'] }}</h2>
-                    <a href="{{route('productcat',  ['id' => $feature->id])}}" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+                    <a href="{{route('productcat',  ['id' => $feature->id,'store_id'=>$feature->store_id])}}" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
                     <img src="{{ asset($feature['image']) }}" alt="" >
                 </div>
             </div>

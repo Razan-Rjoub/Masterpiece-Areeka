@@ -36,7 +36,9 @@ class ReviewController extends Controller
     }
     public function reviewcustomer($product_id, $store_id)
     {
+        $id=Auth::id();
         $product = Product::with('store')->find($product_id);
+
         return view('profilee.review', compact('product'));
 
     }

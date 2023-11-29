@@ -2,42 +2,31 @@
 @section('title', 'single-Product')
 
 @section('content')
-    <link rel="stylesheet" type="text/css" href="{{ asset('Web/stylecart/vendor/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('Web/stylecart/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('Web/stylecart/fonts/iconic/css/material-design-iconic-font.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('Web/stylecart/fonts/linearicons-v1.0.0/icon-font.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('Web/stylecart/vendor/animate/animate.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('Web/stylecart/vendor/css-hamburgers/hamburgers.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('Web/stylecart/vendor/animsition/css/animsition.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('Web/stylecart/vendor/select2/select2.min.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('Web/stylecart/vendor/perfect-scrollbar/perfect-scrollbar.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('Web/stylecart/css/util.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('Web/stylecart/css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('Admin/assets/vendor/css/rtl/core.css') }}"
         class="template-customizer-core-css" />
     <link rel="stylesheet" href="{{ asset('Admin/assets/vendor/css/rtl/theme-default.css') }}"
         class="template-customizer-theme-css" />
-    <div class="container-xxl flex-grow-1 container-p-y">
-        <div class="row">
+    <div class="container flex-grow-1 container-p-y" style="margin-top: 150px" >
+        <div class="row" >
             <!-- Sidebar -->
             {{-- @include('layout.sidebar') --}}
 
-            <div class="content-wrapper">
+            <div class="content-wrapper" >
                 <!-- Content -->
 
-                <div class="container-xxl flex-grow-1 container-p-y">
+                <div class="container-xxl flex-grow-1 container-p-y" >
 
                     <div
-                        class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
+                        class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 ml-5 gap-3 container">
 
-                        <div class="d-flex flex-column">
-                            <div class="d-flex" style="margin-left: -200px">
+                        <div class="d-flex flex-column ">
+                            <div class="d-flex" >
                                 @foreach ($orderitem as $item)
                                     <h5 class="mb-0">Order #{{ $item->order->id }} </h5>
-                                    <span class="badge bg-label-success mx-2 rounded-pill">Paid</span>
+                                    @if($order->payment->method=='cash')
+                                    <span class="badge bg-label-success mx-2 rounded-pill">Cash On Deleviry</span>
+                                    @else   <span class="badge bg-label-success mx-2 rounded-pill">Paid</span>
+                                    @endif
                                     @if ($item->order->status == 'Delivered')
                                         <span class="badge bg-label-success me-1">Delivered</span>
                                     @endif
@@ -48,7 +37,7 @@
                                         <span class="badge bg-label-warning me-1">Dispatched</span>
                                     @endif
                             </div>
-                            <p style="margin-left: -200px" class="mt-1 mb-0">{{ $item->created_at }} </p>
+                            <p  class="mt-1 mb-0">{{ $item->created_at }} </p>
                         @break
                         @endforeach
                     </div>
@@ -59,7 +48,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" style="margin-left:100px">
         <div class="col-12 col-lg-8">
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
@@ -86,7 +75,7 @@
                             @foreach ($orderitem as $item)
                                 <tr class="table_row">
                                     <td>
-                                        <img src="{{ asset('images/product/' . $item->product->image) }}" alt=""class="w-px-40 h-auto ">
+                                        <img src="{{ asset($item->product->image) }}" alt=""class="w-px-40 h-auto ">
                                         <span>{{ $item->product->name }} </span>
                                     </td>
                                     <td><img src="{{  $item->store->image }}" alt=""class="w-px-40 h-auto "></td>

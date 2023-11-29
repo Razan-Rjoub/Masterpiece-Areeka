@@ -21,7 +21,6 @@ class CartController extends Controller
      */
     public function index()
     {
-       
         $usercart = Cart::where('user_id', Auth::id())->with('product')->get();
 
         if (Auth::id()) {
@@ -43,9 +42,9 @@ class CartController extends Controller
             $cart = Cart::where('user_id', Auth::id())->first();
 
             // if ($cart) {
-                return view('cart.cart', compact('usercart'))->with('reload', true);;
+            return view('cart.cart', compact('usercart'))->with('reload', true);
             // } else {
-                // return view('cart.cart', compact('usercart'));
+            // return view('cart.cart', compact('usercart'));
             // }
         } else
             return view('cart.cart', compact('usercart'));
@@ -53,54 +52,81 @@ class CartController extends Controller
     }
     public function create(Request $request)
     {
-
+      
         $cart = Cart::where('user_id', Auth::id())->with('product')->get();
         $totalPrice = $cart->sum('Totalprice');
+      
         $request->validate([
             'name' => 'required|string',
             'address' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
+            
             'regex:/^(079|078|077)\d{7}$/|max:10',
         ]);
-        $payment = Payment::create([
-            'method' => $request->payment,
-            'user_id' => Auth::id(),
-        ]);
+        if ($request->payment == 'cash') {
 
-        $order = Order::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'address' => $request->address,
-            'phone' => $request->phone,
-            'comment' => $request->comment,
-            'status' => 'Dispatched',
-            'totalprice' => $totalPrice,
-            'payment_id' => $payment->id,
-            'user_id' => Auth::id(),
+         
+            $payment = Payment::create([
+                'method' => $request->payment,
+                'user_id' => Auth::id(),
+            ]);
 
-        ]);
-        foreach($cart as $item){
-        OrderItem::create([
-            'order_id' => $order->id,
-            'user_id' => Auth::id(),
-            'product_id'=>$item->product_id,
-            'store_id'=>$item->product->store_id,
-            'price'=>$item->price,
-            'quantity'=>$item->quantity,
 
-        ]);
-    }
-    if (Auth::id()) {
-        Cart::where('user_id', Auth::id())->delete();
-        session()->forget('cartCount');
-        return redirect('/thankyou');
-    }
+            $order = Order::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'comment' => $request->comment,
+                'status' => 'Dispatched',
+                'totalprice' => $totalPrice,
+                'payment_id' => $payment->id,
+                'user_id' => Auth::id(),
+
+            ]);
+           
+            foreach ($cart as $item) {
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'user_id' => Auth::id(),
+                    'product_id' => $item->product_id,
+                    'store_id' => $item->product->store_id,
+                    'price' => $item->price,
+                    'quantity' => $item->quantity,
+
+                ]);
+
+            }
+
+            if (Auth::id()) {
+                Cart::where('user_id', Auth::id())->delete();
+                session()->forget('cartCount');
+                return redirect('/thankyou');
+            }
+        } else {
+         
+            $paymentRequest = [
+                'name' => $request->name,
+                'email' => $request->email,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'comment' => $request->comment,
+                'status' => 'Dispatched',
+                'payment' =>  $request->payment,
+                
+            ];
+            session(['paymentRequest' => $paymentRequest]);
+
+       
+            return redirect()->route('stripe');
+
+        }
     }
     public function destroyCart()
     {
-    
-       
+
+
     }
     public function store($id)
     {
@@ -225,6 +251,7 @@ class CartController extends Controller
 
     public function Checkout()
     {
+  
         if (Auth::id()) {
             $user = User::find(Auth::id());
             $cart = Cart::where('user_id', Auth::id())->with('product')->get();

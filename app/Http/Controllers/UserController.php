@@ -13,10 +13,10 @@ class UserController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {$customer= User::where('Role','customer')->get();
+    {
+        $customer= User::where('Role','customer')->get();
         
         return view('Admin.customer.customer',compact('customer'));
-       
     }
 
     /**

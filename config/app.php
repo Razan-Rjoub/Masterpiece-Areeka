@@ -170,6 +170,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+  
+
     ])->toArray(),
 
     /*

@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use App\Models\Category;
 use App\Models\Store;
-use Auth;
+// use Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -18,7 +18,6 @@ class HomeController extends Controller
                 session()->put('name', Auth()->user()->name);
                 session()->put('image',Auth()->user()->image);
                 return view('Home.home',compact('category','store'));
-              
             }
             else if($role=='admin'){
                 return redirect()->route('index');

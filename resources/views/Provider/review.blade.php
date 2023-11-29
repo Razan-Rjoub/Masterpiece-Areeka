@@ -1,5 +1,5 @@
-@extends('Admin.layout.master')
-@section('title', 'Admin-Review')
+@extends('Provider.layout.master')
+@section('title', 'Provider-Review')
 
 @section('content')
     <div class="content-wrapper">
@@ -33,7 +33,7 @@
                                         <div class="d-flex justify-content-start align-items-center customer-name">
                                             <div class="avatar-wrapper">
                                                 <div class="avatar me-3 rounded-2 bg-label-secondary"><img
-                                                    src="{{ asset('images/product/' . $details['image']) }}"
+                                                    src="{{ asset('images/product/' . $item['image']) }}"
                                                     alt="Product-9" class="rounded-2">
                                                 </div>
                                             </div>

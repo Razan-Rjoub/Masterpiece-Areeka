@@ -2,24 +2,11 @@
 @section('title', 'Cart')
 
 @section('content')
-    <link rel="stylesheet" type="text/css" href="{{ asset('Web/stylecart/vendor/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('Web/stylecart/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('Web/stylecart/fonts/iconic/css/material-design-iconic-font.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('Web/stylecart/fonts/linearicons-v1.0.0/icon-font.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('Web/stylecart/vendor/animate/animate.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('Web/stylecart/vendor/css-hamburgers/hamburgers.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('Web/stylecart/vendor/animsition/css/animsition.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('Web/stylecart/vendor/select2/select2.min.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('Web/stylecart/vendor/perfect-scrollbar/perfect-scrollbar.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('Web/stylecart/css/util.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('Web/stylecart/css/main.css') }}">
-    <div class="main-content-wrapper d-flex clearfix">
+
+    {{-- <div class="main-content-wrapper d-flex clearfix">
 
         <!-- Header Area End -->
-        @if(session('cartPageReloaded'))
+        @if (session('cartPageReloaded'))
         <script>
             // Reload the page after a short delay (e.g., 1 second)
             setTimeout(function() {
@@ -221,22 +208,170 @@
                 </form>
             </div>
         </div>
-    </div>
-    {{-- <script>
-    const urlParams = new URLSearchParams(window.location.search);
-const reloadParam = urlParams.get('reload');
+    </div> --}}
+    <br><br>
+    @if (session('cartPageReloaded'))
+    <script>
+        // Reload the page after a short delay (e.g., 1 second)
+        setTimeout(function() {
+            location.reload();
+        }, 1000);
 
-// Create a flag variable to track whether the page has been reloaded
-let pageReloaded = false;
+        @php session()->forget('cartPageReloaded') @endphp
+    </script>
+@endif
+    <section class="cart_area padding_top mt-5">
+        <div class="container">
+            @include('sweetalert::alert')
+            <div class="cart_inner">
+                
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            @php
+                                $total = 0;
+                            @endphp
+                            @if (session('cart'))
 
-// Check if the "reload" parameter is present and the page hasn't been reloaded already
-if (reloadParam === '1' && !pageReloaded) {
-    // Mark the page as reloaded to prevent future reloads
-    pageReloaded = true;
+                                @foreach (session('cart') as $item => $details)
+                                    @php
+                                        $total += $details['price'] * $details['quantity'];
+                                    @endphp <tr>
+
+                                        <td>
+                                            <div class="media">
+                                                <div class="d-flex">
+                                                    <img style="width:100px" src="{{ asset($details['image']) }}"
+                                                        alt="" />
+                                                </div>
+                                                <div class="media-body">
+                                                    <p>{{ $details['name'] }}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <h5>{{ $details['price'] }}</h5>
+                                        </td>
+                                        <td>
+                                            <div class="product_count">
+                                                <a href="{{ route('quantitycart', ['id' => $item, 'type' => 'minus']) }}">
+                                                    <span class="input-number-decrement"> <i
+                                                            class="ti-angle-down"></i></span></a>
+                                                <input class="input-number" type="text"
+                                                    value="{{ $details['quantity'] }}" min="0" max="10">
+
+                                                <a href="{{ route('quantitycart', ['id' => $item, 'type' => 'plus']) }}"><span
+                                                        class="input-number-increment"> <i
+                                                            class="ti-angle-up"></i></span></a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <h5> {{ $details['price'] * $details['quantity'] }}</h5>
+                                        </td>
+
+                                    </tr>
+                                @endforeach
+                            @elseif (Auth::id())
+                                @if (count($usercart) > 0)
+                                    @php $total = 0; @endphp
+                                    @foreach ($usercart as $item)
+                                        <tr>
+
+                                            <td>
+                                                <div class="media">
+                                                    <div class="d-flex">
+                                                        <img style="width:100px" src="{{ asset($item->product->image) }}"
+                                                            alt="" />
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <p>{{ $item->product->name }}</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <h5>{{ $item->price }}</h5>
+                                            </td>
+                                            <td>
+                                                <div class="product_count">
+                                                    <a href="{{ route('quantitycart', ['id' => $item, 'type' => 'minus']) }}">
+                                                        <span class="input-number-decrement"> <i
+                                                                class="ti-angle-down"></i></span></a>
+                                                    <input class="input-number" type="text"
+                                                        value="{{ $item->quantity }}" min="0" max="10">
     
-    // Reload the page after a short delay (e.g., 1 second)
-    setTimeout(function() {
-        location.reload();
-    }, 1000);}
-    </script> --}}
+                                                    <a href="{{ route('quantitycart', ['id' => $item, 'type' => 'plus']) }}"><span
+                                                            class="input-number-increment"> <i
+                                                                class="ti-angle-up"></i></span></a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <h5>{{ $item->Totalprice }}</h5>
+                                            </td>
+
+                                        </tr>
+                                        @php
+
+                                            $total += $item->Totalprice;
+
+                                        @endphp
+                                    @endforeach
+                                @else
+                                    <p>No item in cart</p>
+                                @endif
+                            @else
+                                <p>No item in cart</p>
+                            @endif
+
+
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <h5>Total</h5>
+                                </td>
+                                <td>
+                                    <h5>{{ $total }}JOD</h5>
+                                </td>
+                            </tr>
+                            <tr class="shipping_area">
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <h5>Shipping</h5>
+                                </td>
+                                <td>
+                                    <div class="shipping_box">
+                                        <ul class="list">
+
+                                            <li class="active">
+                                                <a href="#">Free Shipping</a>
+                                            </li>
+
+
+
+                                        </ul>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="checkout_btn_inner float-right">
+                        <a class="btn_1" href="#">Continue Shopping</a>
+                        <a class="btn_1 checkout_btn_1" href="{{ route('checkout') }}">Proceed to checkout</a>
+                    </div>
+                    
+                </div>
+            </div>
+    </section>
+
 @endsection

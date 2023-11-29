@@ -7,8 +7,9 @@
 <link rel="stylesheet" href="{{asset('Web/css/owl.theme.default.min.css')}}">
 <link rel="stylesheet" href="{{asset('Web/cssstore/style.css')}}">
 <link rel="stylesheet" href="{{asset('Web/stores.css')}}">
-  </div> 
-  <div class="  hero-header w-100 " style="width: 100%;">
+  <br><br>
+
+  <div class="  hero-header mt-5 w-100 " style="width: 100%;">
       <div class=" ">
         <div class="row  ">
 

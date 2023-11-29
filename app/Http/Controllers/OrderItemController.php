@@ -17,8 +17,8 @@ class OrderItemController extends Controller
     {
         $orderitem = OrderItem::where('order_id', $id)->where('user_id',Auth::id())->with(['order','product','user','store'])->get();
         // dd($orderitem);
-     
-        $order=Order::find($id);
+        $order = Order::with('payment')->find($id);
+        // $order=Order::find($id);
         // dd($order);
         return view('profilee.orderdetails',compact('orderitem','order'));
     }

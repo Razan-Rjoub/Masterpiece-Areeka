@@ -23,12 +23,12 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                    <img src="{{ asset('images/product/' . $product->image) }}" alt="product" style="width:250px">
+                    <img src="{{ asset( $product->image) }}" alt="product" style="width:250px">
                 </div>
             </div>
             <div class="col-md-8" style="padding-top:20px;padding-bottom:20px">
                 <div class="rating">
-                    <span class="star" data-value="1">&#9733;</span>
+                    <span class="star" data-value="1">	&#9733;</span>
                     <span class="star" data-value="2">&#9733;</span>
                     <span class="star" data-value="3">&#9733;</span>
                     <span class="star" data-value="4">&#9733;</span>

@@ -5,11 +5,12 @@
 
     <link rel="stylesheet" href="{{ asset('Web/csssingle/style.css') }}">
     <link rel="stylesheet" href="{{ asset('Web/csssingle/single.css') }}">
-    <div class="product_image_area section_padding">
+<br><br><br><br>
+    <div class="product_image_area section_padding container">
         <div class="">
             @include('sweetalert::alert')
             <div class="row  ">
-                <img src="{{ asset('images/product/' . $product->image) }}" />
+                <img class="singleimg" src="{{ asset( $product->image) }}" />
                 <div class="col-lg-2 col-sm-12 col-md-3 imgprod"> <img src="{{ asset('images/product/' . $product->image2) }}" />
                     <img src="{{ asset('images/product/' . $product->image3) }}" />
                     <img src="{{ asset('images/product/' . $product->image4) }}" />
@@ -34,19 +35,18 @@
                             {{ $product->descrption }}
                         </p>
                         <div class="card_area d-flex justify-content-between align-items-center row">
-                            {{-- <div class="product_count">
-                                <span class="inumber-decrement"> <i class="bi bi-dash"></i></span>
-                                <input class="input-number" type="text" value="1" min="0" max="10" name="quantity" id="quantity-input">
-                                <span class="number-increment"> <i class="bi bi-plus"></i></span>
-                            </div> --}}
                             @include('sweetalert::alert')
                             
                             <a href="{{ route('addtocart', ['id' => $product->id]) }}" class="btn-add " style="width:300px;font-size:20px">ADD TO CART</a>
                             <a href="{{ route('wishlist', ['id' => $product->id]) }}" class="like_us">
                                 @if ($wishlist)
-                                    <i class="bi bi-heart-fill" style="color:#ffc713"></i>
+                                <svg style="color: #ffc713" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                                  </svg>
                                 @else
-                                    <i class="bi bi-heart"></i>
+                                <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                                  </svg>
                                 @endif
                             </a>
                         </div>
@@ -80,63 +80,17 @@
                 @include('Product.specification')
                 @include('Product.review')
             </div>
-    </section>
-    <!--================End Product Description Area =================-->
-
-    <!-- product_list part start-->
-    <section class="product_list best_seller">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="section_tittle text-center">
-                        <h2>Best Sellers </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row ">
-                <div class="col-lg-12">
-                    <div class="best_product_slider ">
-                        <div class="single_product_item">
-                            <img src="../images/Bedroom-category/BoyBedroom.jpg" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-
-                        <div class="single_product_item">
-                            <img src="../images/Bedroom-category/BoyBedroom2.jpg" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="single_product_item">
-                            <img src="../images/Bedroom-category/GirlsBedroom4.jpg" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="single_product_item">
-                            <img src="../images/Bedroom-category/MasterBedroom2.jpg" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="single_product_item">
-                            <img src="../images/Bedroom-category/GirlsBedroom3.jpg" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
-
-
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        // Assuming you have the count in a variable named cartCount
+        var cartCount = @if(session('cart')) {{ count(session('cart')) }} @else 0 @endif;
+        
+        // Update the content dynamically
+        $('#cartItemCount').text(cartCount);
+      });
+    </script>
 @endsection

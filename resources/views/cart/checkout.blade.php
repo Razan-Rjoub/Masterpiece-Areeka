@@ -2,9 +2,9 @@
 @section('title', 'checkout')
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('Web/cart.css') }}">
 
-    <div class="container-xxl bg-primary hero-header">
+
+    {{-- <div class="container-xxl bg-primary hero-header">
         <div class="container px-lg-5">
             <div class="row g-5 align-items-end">
 
@@ -64,17 +64,20 @@
                                 </div>
 
                                 <div class="payment-method">
-                                    <!-- Cash on delivery -->
+                                 
                                     <div class="custom-control custom-radio mr-sm-2">
                                         <input type="radio" class="custom-control-input" id="cashOnDelivery"
                                             name="payment" value="cash" checked>
-                                        <label class="custom-control-label" for="cashOnDelivery">Cash on Delivery</label>
+                                        <label class="custom-control-label" for="cashOnDelivery" style="color: black; font-weight:300">Cash on Delivery</label>
                                     </div>
-                                    <!-- Paypal -->
+                                  
                                     <div class="custom-control custom-radio mr-sm-2">
                                         <input type="radio" class="custom-control-input" id="paypal" name="payment" value="paypal">
                                         <label class="custom-control-label" for="paypal">
-                                            <img class="ml-15" src="Web/assets/img/icons/payments/paypal-primary.png"
+                                            <img style="width: 50px" class="ml-15" src="Web/assets/img/icons/payments/master-light.png"
+                                                alt="">
+                                                
+                                                <img style="width: 50px" class="ml-15" src="Web/assets/img/icons/payments/visa.png"
                                                 alt="">
                                         </label>
                                     </div>
@@ -121,7 +124,7 @@
 
                             <form action="{{ route('checkoutcreate') }}" method="post">
                                 @csrf
-                                <!-- Your form fields and content here -->
+                             
 
                             </form>
                         </div>
@@ -129,5 +132,122 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
+    <br><br>
+    <section class="checkout_area padding_top container">
+
+        <div class="billing_details">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h3>Billing Details</h3>
+                    <form class="row contact_form" action="{{ route('checkoutcreate') }}" method="post" >
+                        @csrf
+                        <div class="col-md-10 form-group p_star">
+                            <input type="text" class="form-control" id="name" name="name"
+                                value="{{ $user->name }}" />
+                            @error('name')
+                                <span style="color: red">{{ $message }}</span>
+                            @enderror
+                            {{-- <span class="placeholder" data-placeholder=" Name" ></span> --}}
+                        </div>
+                        <div class="col-md-10 form-group p_star">
+                            <input type="email" class="form-control" id="email" name="email"
+                                value="{{ $user->email }}" />
+                            @error('email')
+                                <span style="color: red">{{ $message }}</span>
+                            @enderror
+                            {{-- <span class="placeholder" data-placeholder="Email"></span> --}}
+                        </div>
+                        <div class="col-md-10 form-group p_star">
+                            <input type="text" class="form-control" id="phone" name="phone"
+                                value="{{ $user->phone }}" />
+                            @error('phone')
+                                <span style="color: red">{{ $message }}</span>
+                            @enderror
+                            {{-- <span class="placeholder" data-placeholder="Phone number"></span> --}}
+                        </div>
+                        <div class="col-md-10 form-group p_star">
+                            <input type="text" class="form-control" id="address" name="address"
+                                value="{{ $user->address }}" placeholder="Address" />
+                                  {{-- <span class="placeholder" data-placeholder="Address"></span> --}}
+                            @error('address')
+                                <span style="color: red">{{ $message }}</span>
+                            @enderror
+                            {{-- <span class="placeholder" data-placeholder="Phone number"></span> --}}
+                        </div>
+                        <div class="col-md-10 form-group ">
+                            <textarea class="form-control" name="comment" id="comment" rows="10" placeholder="Order Notes"></textarea>
+                        </div>
+
+
+                        <div class="payment-method col-md-10 ">
+
+                            <div class="custom-control custom-radio mr-sm-2">
+                                <input type="radio" class="custom-control-input" id="cashOnDelivery" name="payment"
+                                    value="cash" checked>
+                                <label class="custom-control-label" for="cashOnDelivery"
+                                    style="color: black; font-weight:300">Cash on Delivery</label>
+                            </div>
+
+                            <div class="custom-control custom-radio mr-sm-2">
+                                <input type="radio" class="custom-control-input" id="paypal" name="payment"
+                                    value="paypal">
+                                <label class="custom-control-label" for="paypal">
+                                    <img style="width: 50px" class="ml-15"
+                                        src="Web/assets/img/icons/payments/master-light.png" alt="">
+
+                                    <img style="width: 50px" class="ml-15" src="Web/assets/img/icons/payments/visa.png"
+                                        alt="">
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button class="btn_3" type="submit">Proceed to Checkout</button>
+                    </form>
+                </div>
+                <div class="col-lg-4">
+                    <div class="order_box">
+                        <h2>Your Order</h2>
+                        <ul class="list">
+                            <li>
+                                <a href="#">Product
+                                    <span>Total</span>
+                                </a>
+                            </li>
+                            @php $total=0; @endphp
+                            @foreach ($cart as $item)
+                                @php
+                                    
+                                    $total += $item->Totalprice;
+                                    
+                                @endphp
+                            <li>
+                                <a href="#">{{$item->product->name}}
+                                    <span class="middle">x 0{{$item->quantity}}</span>
+                                    <span class="last">{{ $item->price * $item->quantity }}JOD</span>
+                                </a>
+                            </li>
+                          @endforeach
+                        </ul>
+                        <ul class="list list_2">
+                            <li>
+                                <a href="#">Subtotal
+                                    <span>{{$total}}JOD</span>
+                                </a>
+                            </li>
+                       
+                            <li>
+                                <a href="#">Total
+                                    <span>{{$total}}JOD</span>
+                                </a>
+                            </li>
+                        </ul>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
 @endsection

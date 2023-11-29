@@ -19,7 +19,7 @@ return new class extends Migration
             $table->double('totalprice');
             $table->string('status');
             $table->string('phone');
-            $table->text('comment');
+            $table->text('comment')->nullable();
             $table->string('name');
             $table->string('email');
             $table->timestamps();

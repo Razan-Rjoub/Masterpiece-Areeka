@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="{{asset('Web/tiny-slider.css')}}">
   
 
-    </div>
+
     <br><br>
-    <div class="why-choose-section">
+    <div class="why-choose-section mt-5">
         <div class="container">
             <div class="row justify-content-between align-items-center">
                 <div class="col-lg-6">
@@ -92,7 +92,7 @@
               <!-- Start Column 1 -->
                 <div class="col-12 col-md-6 col-lg-4 mb-5 mb-md-0 ">
                     <img src="../images/FZ2_8041.JPG" class="img-fluid mb-5" style="border-radius: 8px;"></div>
-                    <h3 clas><a href="#"><span class="">Razan</span> AL-Rjoub</a></h3>
+                    <h3 clas><span class="">Razan</span> AL-Rjoub</h3>
         <span class="d-block position mb-4">CEO, Founder</span>
         
                  

@@ -1066,7 +1066,7 @@
 
 /* line 29, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_menu.scss */
 .main_menu .main-menu-item ul li .nav-link:hover {
-  color: #000;
+  color: #FFC713;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
@@ -1181,12 +1181,12 @@
 .main_menu .cart i:after {
   position: absolute;
   border-radius: 50%;
-  background-color: #f13d80;
+  background-color: #FFC713;
   width: 14px;
   height: 14px;
   right: -8px;
   top: -8px;
-  content: "5";
+
   text-align: center;
   line-height: 15px;
   font-size: 10px;
