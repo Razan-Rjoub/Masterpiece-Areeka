@@ -38,7 +38,6 @@ class CartController extends Controller
             session(['cartCount' => $cartcount]);
 
             session()->forget('cart');
-
             $cart = Cart::where('user_id', Auth::id())->first();
 
             // if ($cart) {

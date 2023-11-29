@@ -189,11 +189,11 @@
                             @foreach ($product as $item)
                                 <div class="col-lg-4 col-sm-6">
                                     <div class="single_product_item">
-                                        <a href="{{ route('singleproduct', ['id' => $item->id]) }}"> <img
+                                        <a href="{{ route('singleproduct', ['id' => $item->id]) }}"> <img style="height: 300px"
                                                 src="{{ asset($item->image) }}" alt=""></a>
                                         <div class="single_product_text">
                                             <h4>{{ $item->name }}</h4>
-                                            <h3>{{ $item->price }}</h3>
+                                            <h3>{{ $item->price }}JOD</h3>
                                             <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
                                         </div>
                                     </div>

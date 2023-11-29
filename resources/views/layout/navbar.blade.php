@@ -202,10 +202,14 @@
                             </a>
                         @endif --}}
                             <div
-                                class="dropdown cart {{ session('cart') && count(session('cart', [])) > 0 ? 'active' : '' }}">
+                                class="dropdown cart ">
                                 <a href="{{ route('cart') }}">
                                     <i class="fas fa-cart-plus"></i>
-                                    <sup>{{ session('cart') ? count(session('cart', [])) : 0 }}</sup>
+                                    @if (session('cart'))
+                                    <sup>{{ count(session('cart', [])) }}</sup>
+                                    @else
+                                    <sup>{{ session('cartCount', 0) }}</sup>
+                                    @endif
                                 </a>
                             </div>
 

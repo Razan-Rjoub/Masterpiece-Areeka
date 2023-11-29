@@ -14,22 +14,17 @@ class StoreController extends Controller
 {
 
     public function index()
-    {if (Auth::id()) {
-        $role = Auth()->user()->Role;
-        if ($role == 'admin') {
+    {
+        if (Auth::check()) {
+            $role = Auth::user()->Role;
+            if ($role == 'admin' || $role == 'customer') {
+                $store = Store::all();
+                return view('Stores.store', compact('store'));
+            }
+        } 
         $store = Store::all();
-       
-        return view('Admin.store.store',compact('store'));}
-        else if($role == 'customer'){
-            $store = Store::all();
-        return view('Stores.store',compact('store'));  
-        }
-    
-
-}else {
-        $store = Store::all();
-        return view('Stores.store',compact('store')); 
-    }
+        return view('Stores.store', compact('store'));
+        
     }
 
     public function create()
@@ -42,7 +37,7 @@ class StoreController extends Controller
 
     public function store(Request $request)
     {
-       
+
 
         $request->validate([
             'storename' => 'required|string',
@@ -57,7 +52,7 @@ class StoreController extends Controller
         Store::create([
             'name' => $request->storename,
             'image' => $filename,
-            'totalproduct' =>0,
+            'totalproduct' => 0,
             'totalearning' => 0
         ]);
         Alert::success('success', 'Store Added Successfully');
@@ -95,7 +90,8 @@ class StoreController extends Controller
         }
         $data['name'] = $request->storename;
 
-        Store::where(['id' => $id])->update( $data
+        Store::where(['id' => $id])->update(
+            $data
         );
         Alert::success('success', 'Store Updated Successfully');
         return redirect('store');
@@ -104,11 +100,11 @@ class StoreController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
         Store::find($id)->delete();
         Store::destroy($id);
         Alert::success('success', 'Store Deleted Successfully');
-    return redirect('store');
+        return redirect('store');
     }
 }

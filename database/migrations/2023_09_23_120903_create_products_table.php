@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->mediumText('image');
-            $table->mediumText('image2');
-            $table->mediumText('image3');
-            $table->mediumText('image4');
+            $table->mediumText('image2')->nullable();
+            $table->mediumText('image3')->nullable();
+            $table->mediumText('image4')->nullable();
             $table->double('price');
             $table->string('stock')->nullable();
             $table->text('descrption');

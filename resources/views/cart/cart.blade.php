@@ -233,6 +233,7 @@
                                 <th scope="col">Price</th>
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Total</th>
+                               
                             </tr>
                         </thead>
                         <tbody>
@@ -259,7 +260,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <h5>{{ $details['price'] }}</h5>
+                                            <h5>{{ $details['price'] }}JOD</h5>
                                         </td>
                                         <td>
                                             <div class="product_count">
@@ -275,7 +276,13 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <h5> {{ $details['price'] * $details['quantity'] }}</h5>
+                                            <h5> {{ $details['price'] * $details['quantity'] }}JOD </h5>
+                                        </td>
+                                        <td>
+                                            <a
+                                            href="{{ route('deletecart', ['item' => $item->id]) }}">
+                                            <i class="ti-heart"></i>
+                                            </a>
                                         </td>
 
                                     </tr>
@@ -298,7 +305,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <h5>{{ $item->price }}</h5>
+                                                <h5>{{ $item->price }}JOD</h5>
                                             </td>
                                             <td>
                                                 <div class="product_count">
@@ -314,9 +321,14 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <h5>{{ $item->Totalprice }}</h5>
+                                                <h5>{{ $item->Totalprice }}JOD</h5>
                                             </td>
-
+                                            <td>
+                                                <a
+                                                href="{{ route('deletecart', ['item' => $item->id]) }}">
+                                                <i class="ti-trash"></i>
+                                                </a>
+                                            </td>
                                         </tr>
                                         @php
 
@@ -366,7 +378,7 @@
                         </tbody>
                     </table>
                     <div class="checkout_btn_inner float-right">
-                        <a class="btn_1" href="#">Continue Shopping</a>
+                        <a class="btn_1" href="/stores">Continue Shopping</a>
                         <a class="btn_1 checkout_btn_1" href="{{ route('checkout') }}">Proceed to checkout</a>
                     </div>
                     

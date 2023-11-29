@@ -25,8 +25,7 @@ class StripeController extends Controller
                 'price_data' => [
                     'currency' => 'usd',
                     'product_data' => [
-                        'name' => $cartItem->product->name,
-                       
+                        'name' => $cartItem->product->name, 
                     ],
                     'unit_amount' => $cartItem->price * 100, // Convert to cents
                 ],

@@ -11,10 +11,18 @@
             @include('sweetalert::alert')
             <div class="row  ">
                 <img class="singleimg" src="{{ asset( $product->image) }}" />
-                <div class="col-lg-2 col-sm-12 col-md-3 imgprod"> <img src="{{ asset('images/product/' . $product->image2) }}" />
-                    <img src="{{ asset('images/product/' . $product->image3) }}" />
-                    <img src="{{ asset('images/product/' . $product->image4) }}" />
+                <div class="col-lg-2 col-sm-12 col-md-3 imgprod"> 
+                    @if($product->image2 != null)
+                    <img src="{{ asset($product->image2) }}" />
+                    @endif
+                    @if($product->image3 != null)
+                    <img src="{{ asset($product->image3) }}" />
+                    @endif
+                    @if($product->image4 != null)
+                    <img src="{{ asset($product->image4) }}" />
+                    @endif
                 </div>
+                
 
                 <div class="col-lg-5 col-xl-4">
                     <div class="s_product_text">

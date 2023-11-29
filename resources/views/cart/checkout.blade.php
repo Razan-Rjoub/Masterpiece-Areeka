@@ -134,7 +134,7 @@
         </div>
     </div> --}}
     <br><br>
-    <section class="checkout_area padding_top container">
+    <section class="checkout_area padding_top container mt-5">
 
         <div class="billing_details">
             <div class="row">
@@ -201,8 +201,8 @@
                                 </label>
                             </div>
                         </div>
-                        
-                        <button class="btn_3" type="submit">Proceed to Checkout</button>
+                      <center style="margin: auto"> <button class="btn_3 mt-3" type="submit">Proceed to Checkout</button></center>
+                       
                     </form>
                 </div>
                 <div class="col-lg-4">

@@ -140,9 +140,6 @@ class ProductController extends Controller
                 $image4 = time() . '_' . $request->file('image4')->getClientOriginalName();
                 $request->file('image4')->move(public_path('images/product'), $image4);
 
-
-           
-
                 Product::create([
                     'name' => $request->productname,
                     'image' => $image,
