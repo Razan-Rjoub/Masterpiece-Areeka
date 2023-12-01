@@ -12,7 +12,8 @@ class StoreSeeder extends Seeder
     public function run(): void
     {
         DB::table('stores')->insert([
-            ['id'=>1,
+            [
+            'id'=>1,
             'image' => 'http://127.0.0.1:8000/images/seeder/stores/Gurfatiy.jpg',
             'name' => 'Gurfatiy',
             'totalproduct' => 10,

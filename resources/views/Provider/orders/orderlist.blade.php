@@ -34,11 +34,17 @@
                                     </td>
 
                                     <td>
-
-                                        <h6 class="mb-0 text-success w-px-100">
-                                            <i class="mdi mdi-circle mdi-14px me-2"></i>
-                                            Paid
-                                        </h6>
+                                        @if ($item->order->payment->method=='paypal')
+                                            <h6 class="mb-0 text-success w-px-100">
+                                                <i class="mdi mdi-circle mdi-14px me-2"></i>
+                                                Paid
+                                            </h6>
+                                            @else 
+                                            <h6 class="mb-0 text-warning w-px-100">
+                                                <i class="mdi mdi-circle mdi-14px me-2"></i>
+                                                Cash 
+                                            </h6>
+                                        @endif
                                     </td>
                                     @if ($item->order->status == 'Delivered')
                                         <td><span class="badge bg-label-success me-1">Delivered</span></td>
@@ -62,11 +68,12 @@
                                                     href="{{ route('orderdetail', $item->order->id) }}"><i
                                                         class="mdi mdi-eye me-1"></i>
                                                     View Details</a>
-                                            
-                                            <a class="dropdown-item"
-                                            href="{{ route('editorder', $item->order->id) }}"><i
-                                                class="mdi mdi-pen me-1"></i>
-                                            Edit</a></div> 
+
+                                                <a class="dropdown-item"
+                                                    href="{{ route('editorder', $item->order->id) }}"><i
+                                                        class="mdi mdi-pen me-1"></i>
+                                                    Edit</a>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>

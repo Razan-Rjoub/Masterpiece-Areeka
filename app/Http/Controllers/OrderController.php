@@ -32,6 +32,8 @@ class OrderController extends Controller
                 }
                 $orderitem = OrderItem::where('store_id', $store_id)->with(['order', 'product', 'user', 'store'])->get();
                 $order = Order::with(['payment', 'user'])->get();
+
+
                 return view('Provider.orders.orderlist', compact('orderitem', 'order'));
 
             }
@@ -67,6 +69,9 @@ class OrderController extends Controller
             $role = Auth()->user()->Role;
             if ($role == 'provider') {
                 $data['status'] = $request->status;
+                if($request->status=='Delivered'){
+                    
+                }
                 Order::where(['id' => $id])->update(
                     $data
                 );

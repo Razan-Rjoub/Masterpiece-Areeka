@@ -15,7 +15,6 @@ class ProviderController extends Controller
     public function index()
     {
         $provider= User::where('Role','provider')->get();
-
         return view('Admin.provider.provider',compact('provider'));
     }
 

@@ -13,6 +13,7 @@ class CategoryController extends Controller
     {
         $category = Category::all();
         $store = Category::with('store')->get();
+        
 
         return view('Admin.category.category', compact('category', 'store'));
     }

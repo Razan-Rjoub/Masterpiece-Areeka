@@ -14,7 +14,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $category = Category::all();
+        $category = Category::take(4)->get();
+
         $store = Store::take(4)->get();
         $highestProductCounts = OrderItem::groupBy('product_id')
             ->selectRaw('product_id, MAX(quantity) as max_count')
@@ -28,21 +29,32 @@ class HomeController extends Controller
                 $highestProducts[] = $product;
             }
         }
-        
+
+        // if (Auth::check()) {
+        //     $user = Auth::user();
+        //     $role = $user->Role ?? null; 
+        //     if ($role == 'admin') {
+        //         return redirect()->route('index');
+        //     } else if ($role == 'provider') {
+        //         return redirect('product');
+        //     } else {
+        //         return view('Home.home', compact('category', 'store', 'highestProducts'));
+        //     }
+        // } else {
+        return view('Home.home', compact('category', 'store', 'highestProducts'));
+        // }
+
+    }
+    public function Role()
+    {
         if (Auth::check()) {
             $user = Auth::user();
-            $role = $user->Role ?? null; 
+            $role = $user->Role ?? null;
             if ($role == 'admin') {
                 return redirect()->route('index');
             } else if ($role == 'provider') {
                 return redirect('product');
-            } else {
-                return view('Home.home', compact('category', 'store', 'highestProducts'));
             }
-        } else {
-            return view('Home.home', compact('category', 'store', 'highestProducts'));
         }
-        
     }
-
 }

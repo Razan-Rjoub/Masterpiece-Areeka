@@ -280,8 +280,8 @@
                                         </td>
                                         <td>
                                             <a
-                                            href="{{ route('deletecart', ['item' => $item->id]) }}">
-                                            <i class="ti-heart"></i>
+                                            href="{{ route('deletecart', ['item' => $item]) }}">
+                                            <i class="ti-trash"></i>
                                             </a>
                                         </td>
 

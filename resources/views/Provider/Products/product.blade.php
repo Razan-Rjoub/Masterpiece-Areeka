@@ -1,21 +1,13 @@
 @extends('Provider.layout.master')
-@section('title', 'Admin-ProductList')
+@section('title', 'Provider-ProductList')
 
 @section('content')
     <div class="content-wrapper">
-
-        <!-- Content -->
-
         <div class="container-xxl flex-grow-1 container-p-y">
-
-
-
-
             <div class="">
                 <a href="{{ url('/product/create') }}"><button class=" btn btn-primary" tabindex="0" type="button"
                         data-bs-toggle="offcanvas"><span><i class="mdi mdi-plus me-0 me-sm-1"></i><span
                                 class="d-none d-sm-inline-block">Add Product</span></span></button></a>
-                <!-- Category List Table -->
                 <div class="card">
                     @include('sweetalert::alert')
                     <div class="card-datatable table-responsive">
@@ -35,7 +27,7 @@
                             <tbody class="table-border-bottom-0">
                                 @foreach ($product as $item)
                                     <tr>
-                                        <td><img src={{ asset('images/product/' . $item->image) }} alt=""
+                                        <td><img src={{ asset($item->image) }} alt=""
                                                 style="width: 50px;"><i class="fab fa-angular fa-lg text-danger me-3"></i>
                                             <strong>{{ $item->name }} </strong>
                                         </td>

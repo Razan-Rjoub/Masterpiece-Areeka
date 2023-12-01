@@ -7,38 +7,7 @@
 
         <div class="container-xxl flex-grow-1 container-p-y">
 
-            {{-- <div
-                class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
-
-                <div class="d-flex flex-column justify-content-center">
-                    <div class="d-flex">
-                        @foreach ($orderitem as $item)
-                            <h5 class="mb-0">Order #{{ $item->order->id }} </h5>
-
-
-
-                            <span class="badge bg-label-success mx-2 rounded-pill">Paid</span>
-                            @if ($item->order->status == 'Delivered')
-                                <span class="badge bg-label-success me-1">Delivered</span>
-                            @endif
-                            @if ($item->order->status == 'out for delivery')
-                                <span class="badge bg-label-primary me-1">Out For Delivery</span>
-                            @endif
-                            @if ($item->order->status == 'Dispatched')
-                                <span class="badge bg-label-warning me-1">Dispatched</span>
-                            @endif
-
-
-                    </div>
-                    <p class="mt-1 mb-0">{{ $item->created_at }} </p>
-                @break
-                @endforeach
-            </div>
-
-        </div> --}}
-
-        <!-- Order Details Table -->
-
+        
         <div class="row">
             <div class="col-12 col-lg-8">
                 <div class="card mb-4">
@@ -65,7 +34,7 @@
                                 @foreach ($orderitem as $item)
                                     <tr>
 
-                                        <td><img src="{{ asset('images/product/' . $item->product->image) }}" alt=""class="w-px-40 h-auto ">
+                                        <td><img src="{{ asset( $item->product->image) }}" alt=""class="w-px-40 h-auto ">
                                             <span>{{ $item->product->name }} </span>
                                         </td>
                                         <td>{{ $item->store->name }} </td>

@@ -60,12 +60,10 @@ class CartController extends Controller
             'address' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
-            
             'regex:/^(079|078|077)\d{7}$/|max:10',
         ]);
+ 
         if ($request->payment == 'cash') {
-
-         
             $payment = Payment::create([
                 'method' => $request->payment,
                 'user_id' => Auth::id(),

@@ -35,10 +35,19 @@
 
                                     <td>
 
-                                        <h6 class="mb-0 text-success w-px-100">
-                                            <i class="mdi mdi-circle mdi-14px me-2"></i>
-                                            Paid
-                                        </h6>
+                                        
+                                            @if ($item->payment->method=='paypal')
+                                            <h6 class="mb-0 text-success w-px-100">
+                                                <i class="mdi mdi-circle mdi-14px me-2"></i>
+                                                Paid
+                                            </h6>
+                                            @else 
+                                            <h6 class="mb-0 text-warning w-px-100">
+                                                <i class="mdi mdi-circle mdi-14px me-2"></i>
+                                                Cash 
+                                            </h6>
+                                        @endif
+                                        
                                     </td>
                                     @if ($item->status == 'Delivered')
                                         <td><span class="badge bg-label-success me-1">Delivered</span></td>
@@ -49,7 +58,7 @@
                                     @if ($item->status == 'Dispatched')
                                         <td><span class="badge bg-label-warning me-1">Dispatched</span></td>
                                     @endif
-                                    <td>{{$item->payment->method}} </td>
+                                    <td>{{ $item->payment->method }} </td>
 
                                     <td>
                                         <div class="dropdown">
@@ -58,10 +67,10 @@
                                                 <i class="mdi mdi-dots-vertical"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                              <a class="dropdown-item"
-                                              href="{{ url('/order/' . $item->id . '/edit') }}"><i
-                                                  class="mdi mdi-eye me-1"></i>
-                                              View Details</a>
+                                                <a class="dropdown-item"
+                                                    href="{{ url('/order/' . $item->id . '/edit') }}"><i
+                                                        class="mdi mdi-eye me-1"></i>
+                                                    View Details</a>
                                             </div>
                                         </div>
                                     </td>

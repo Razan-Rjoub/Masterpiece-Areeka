@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\ImageUploadTrait;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
@@ -17,6 +18,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
+    use ImageUploadTrait;
     /**
      * Display a listing of the resource.
      */
@@ -25,19 +27,15 @@ class ProductController extends Controller
         if (Auth::id()) {
             $role = Auth()->user()->Role;
             if ($role == 'admin') {
-
                 $product = Product::with('category', 'store')->get();
                 return view('Admin.products.product', compact('product'));
             } else if ($role == 'provider') {
                 $user = User::find(Auth::id());
                 $store_id = $user->store;
                 $product = Product::where('store_id', $store_id)->with('category')->get();
-
                 return view('Provider.Products.product', compact('product'));
             }
-
         }
-
     }
 
     public function create()
@@ -59,6 +57,7 @@ class ProductController extends Controller
 
         }
     }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -67,9 +66,6 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'quantity' => 'required|numeric',
             'description' => 'required',
-            'image2' => 'required|image|mimes:jpeg,png,jpg,gif,jfif|max:2048',
-            'image3' => 'required|image|mimes:jpeg,png,jpg,gif,jfif|max:2048',
-            'image4' => 'required|image|mimes:jpeg,png,jpg,gif,jfif|max:2048',
             'width' => 'required',
             'height' => 'required',
             'depth' => 'required',
@@ -77,102 +73,46 @@ class ProductController extends Controller
             'qualitycheck' => 'required',
             'longdescription' => 'required'
         ]);
-        // dd($request);
-        if (Auth::id()) {
-            $role = Auth()->user()->Role;
-            if ($role == 'admin') {
+
+        $image = $this->uploadImage($request, 'image', 'uploads');
+        $image2 = $this->uploadImage($request, 'image2', 'uploads');
+        $image3 = $this->uploadImage($request, 'image3', 'uploads');
+        $image4 = $this->uploadImage($request, 'image4', 'uploads');
+        $product = Product::where('store_id', $request->store_id)->with('store')->get();
+        $totalearning = Product::where('store_id', $request->store_id)->with('store')->sum('price');
+        $totalProducts = $product->count();
+
+        $user = User::find(Auth::id());
+
+        Product::create([
+            'name' => $request->productname,
+            'image' => $image,
+            'image2' => $image2,
+            'image3' => $image3,
+            'image4' => $image4,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+            'descrption' => $request->description,
+            'store_id' => $request->store_id,
+            'category_id' => $request->category_id,
+            'stock' => $request->stock,
+            'status' => $user->Role == 'provider' ? 'pending' : $request->status,
+            'descrptionLong' => $request->longdescription,
+            'width' => $request->width,
+            'height' => $request->height,
+            'Depth' => $request->depth,
+            'Weight' => $request->weight,
+            'Qualitycheck' => $request->qualitycheck,
+        ]);
+        $store = Store::find($request->store_id);
+        $store->totalproduct = $totalProducts;
+        $store->totalearning = $totalearning;
+        $store->save();
+        Alert::success('success', 'product Added Successfully');
+        return redirect('product');
 
 
-                $image = time() . '_' . $request->file('image')->getClientOriginalName();
-                $request->file('image')->move(public_path('images/product'), $image);
 
-                $image2 = time() . '_' . $request->file('image2')->getClientOriginalName();
-                $request->file('image2')->move(public_path('images/product'), $image2);
-
-                $image3 = time() . '_' . $request->file('image3')->getClientOriginalName();
-                $request->file('image3')->move(public_path('images/product'), $image3);
-
-                $image4 = time() . '_' . $request->file('image4')->getClientOriginalName();
-                $request->file('image4')->move(public_path('images/product'), $image4);
-
-                Product::create([
-                    'name' => $request->productname,
-                    'image' => $image,
-                    'image2' => $image2,
-                    'image3' => $image3,
-                    'image4' => $image4,
-                    'price' => $request->price,
-                    'quantity' => $request->quantity,
-                    'descrption' => $request->description,
-                    'store_id' => $request->store_id,
-                    'category_id' => $request->category_id,
-                    'stock' => $request->stock,
-                    'status' => $request->status,
-                    'descrptionLong' => $request->longdescription,
-                    'width' => $request->width,
-                    'height' => $request->height,
-                    'Depth' => $request->depth,
-                    'Weight' => $request->weight,
-                    'Qualitycheck' => $request->qualitycheck,
-                ]);
-                $product = Product::where('store_id', $request->store_id)->with('store')->get();
-                $totalearning = Product::where('store_id', $request->store_id)->with('store')->sum('price');
-                $totalProducts = $product->count();
-                $store = Store::find($request->store_id);
-                $store->totalproduct = $totalProducts;
-                $store->totalearning = $totalearning;
-                $store->save();
-                Alert::success('success', 'product Added Successfully');
-                return redirect('product');
-            } else if ($role == 'provider') {
-                $user = User::find(Auth::id());
-
-
-                $image = time() . '_' . $request->file('image')->getClientOriginalName();
-                $request->file('image')->move(public_path('images/product'), $image);
-
-                $image2 = time() . '_' . $request->file('image2')->getClientOriginalName();
-                $request->file('image2')->move(public_path('images/product'), $image2);
-
-                $image3 = time() . '_' . $request->file('image3')->getClientOriginalName();
-                $request->file('image3')->move(public_path('images/product'), $image3);
-
-                $image4 = time() . '_' . $request->file('image4')->getClientOriginalName();
-                $request->file('image4')->move(public_path('images/product'), $image4);
-
-                Product::create([
-                    'name' => $request->productname,
-                    'image' => $image,
-                    'image2' => $image2,
-                    'image3' => $image3,
-                    'image4' => $image4,
-
-                    'price' => $request->price,
-                    'quantity' => $request->quantity,
-                    'descrption' => $request->description,
-                    'store_id' => $request->store_id,
-                    'category_id' => $request->category_id,
-                    'stock' => $request->stock,
-                    'status' => 'pending',
-                    'descrptionLong' => $request->longdescription,
-                    'width' => $request->width,
-                    'height' => $request->height,
-                    'Depth' => $request->depth,
-                    'Weight' => $request->weight,
-                    'Qualitycheck' => $request->qualitycheck,
-                ]);
-                $product = Product::where('store_id', $request->store_id)->with('store')->get();
-                $totalearning = Product::where('store_id', $request->store_id)->with('store')->sum('price');
-                $totalProducts = $product->count();
-                $store = Store::find($request->store_id);
-                $store->totalproduct = $totalProducts;
-                $store->totalearning = $totalearning;
-                $store->save();
-                Alert::success('success', 'product Added Successfully');
-                return redirect('product');
-            }
-
-        }
     }
 
     /**
@@ -213,67 +153,37 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
+    
         if (Auth::id()) {
-            $role = Auth()->user()->Role;
-            if ($role == 'admin') {
-                $request->validate([
-                    'productname' => 'required|string',
-                    'price' => 'required|numeric',
-                    'quantity' => 'required|numeric',
-                    'description' => 'required'
-                ]);
-                $filename = '';
-                if ($request->hasFile('image')) {
-                    $filename = $request->getSchemeAndHttpHost() . '/images/product/' . time() . '.' . $request->image->extension();
-                    $request->image->move(public_path('/images/product/'), $filename);
-                    $data['image'] = $filename;
-                } else {
-                    unset($request->image);
-                }
-                $data['name'] = $request->productname;
-                $data['price'] = $request->price;
-                $data['quantity'] = $request->quantity;
-                $data['descrption'] = $request->description;
-                $data['store_id'] = $request->store_id;
-                $data['category_id'] = $request->category_id;
-                $data['status'] = $request->status;
-                $data['stock'] = $request->stock;
-                Product::where(['id' => $id])->update(
-                    $data
-                );
-                Alert::success('success', 'product Updated Successfully');
-                return redirect('product');
-            } else if ($role == 'provider') {
-                $request->validate([
-                    'productname' => 'required|string',
+            $request->validate([
+                'name' => 'required|string',
+                'price' => 'required|numeric',
+                'quantity' => 'required|numeric',
+                'descrption' => 'required',
 
-                    'price' => 'required|numeric',
-                    'quantity' => 'required|numeric',
-                    'description' => 'required'
-                ]);
-                $filename = '';
-                if ($request->hasFile('image')) {
-                    $filename = $request->getSchemeAndHttpHost() . '/images/product/' . time() . '.' . $request->image->extension();
-                    $request->image->move(public_path('/images/product/'), $filename);
-                    $data['image'] = $filename;
-                } else {
-                    unset($request->image);
-                }
-                $data['name'] = $request->productname;
-                $data['price'] = $request->price;
-                $data['quantity'] = $request->quantity;
-                $data['descrption'] = $request->description;
-                $data['store_id'] = $request->store_id;
-                $data['category_id'] = $request->category_id;
-                $data['status'] = 'pending';
-                $data['stock'] = $request->stock;
-                Product::where(['id' => $id])->update(
-                    $data
-                );
-                Alert::success('success', 'product Updated Successfully');
+                'width' => 'required',
+                'height' => 'required',
+                'Depth' => 'required',
+                'Weight' => 'required',
+                'Qualitycheck' => 'required',
+                'descrptionLong' => 'required'
+            ]);
 
-                return redirect('product');
-            }
+            $product = Product::findOrFail($id);
+            $data = $request->except(['_token', '_method']);
+            $image = $this->updateImage($request, 'image', 'uploads', $product->image);
+            $image2 = $this->updateImage($request, 'image2', 'uploads', $product->image2);
+            $image3 = $this->updateImage($request, 'image3', 'uploads', $product->image3);
+            $image4 = $this->updateImage($request, 'image4', 'uploads', $product->image4);
+            $data['image'] = empty(!$image) ? $image : $product->image;
+            $data['image2'] = empty(!$image2) ? $image2 : $product->image2;
+            $data['image3'] = empty(!$image3) ? $image3 : $product->image3;
+            $data['image4'] = empty(!$image4) ? $image4 : $product->image4;
+            Product::where(['id' => $id])->update(
+                $data
+            );
+            Alert::success('success', 'product Updated Successfully');
+            return redirect('product');
         }
     }
 
@@ -297,7 +207,7 @@ class ProductController extends Controller
     }
     public function products($id)
     {
-        $product = Product::where('store_id', $id)->where('status','active')->get();
+        $product = Product::where('store_id', $id)->where('status', 'active')->get();
         $store = Store::find($id);
         $category = Category::where('store_id', $id)->get();
 
@@ -333,7 +243,7 @@ class ProductController extends Controller
     public function productcat($id, $store_id)
     {
         $category = Category::where('store_id', $store_id);
-        $product = Product::where('category_id', $id)->get();
+        $product = Product::where('category_id', $id)->where('status','active')->get();
         $store = Store::find($store_id);
         return view('Product.product', compact('product', 'store', 'category'));
 

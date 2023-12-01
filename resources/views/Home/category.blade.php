@@ -8,7 +8,8 @@
     </div>
         <div class="row align-items-center justify-content-between">
             @foreach ($category as $index => $feature)
-            <div class="col-lg-{{ $index % 2 === 0 ? '7' : '5' }} col-sm-6">
+            <div class="col-lg-{{ intval($index) % 2 === 0 ? '7' : '5' }} col-sm-6">
+
                 <div class="single_feature_post_text">
                     <p>Premium Quality</p>
                     <h3>{{ $feature['name'] }}</h3>

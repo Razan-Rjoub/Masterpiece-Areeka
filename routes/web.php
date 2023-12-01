@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 
@@ -61,15 +61,13 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 // **          Admin          ***/
-Route::get('/adminn', function () {
-    return view('Admin.index');
-})->name('index')->middleware(['auth', 'verified']);
+
 
 Route::get('/profilee', function () {
     return view('Admin.profile.profile');
 })->name('profile');
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'checkRole:admin,provider'])->group(function () {
     Route::resource('/store', StoreController::class);
     Route::resource('/category', CategoryController::class);
     Route::resource('/product', ProductController::class);
@@ -78,7 +76,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('/review', ReviewController::class);
     Route::resource('/adminuser', AdminController::class);
     Route::resource('/provider', ProviderController::class);
+    Route::get('/adminn', function () {
+        return view('Admin.index');
+    })->name('index');
+    Route::get('/vendor', function () {
+        return view('Provider.index');
+    });
 });
+
 
 Route::get('/editorder/{id}', [OrderController::class, 'editorder'])->name('editorder');
 

@@ -27,7 +27,7 @@ class StripeController extends Controller
                     'product_data' => [
                         'name' => $cartItem->product->name, 
                     ],
-                    'unit_amount' => $cartItem->price * 100, // Convert to cents
+                    'unit_amount' => $cartItem->price * 100, 
                 ],
                 'quantity' => $cartItem->quantity,
             ];
@@ -36,7 +36,6 @@ class StripeController extends Controller
         // Create a Checkout Session
         $response = \Stripe\Checkout\Session::create([
             'line_items' => $lineItems,
-    
             'mode' => 'payment',
             'success_url' => route('stripe_success'),
             'cancel_url' => route('stripe_cancel'),

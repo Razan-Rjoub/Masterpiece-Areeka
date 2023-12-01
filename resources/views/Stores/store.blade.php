@@ -39,7 +39,7 @@
     </div>
   <br><br><br><br><br>
 
-  <section class="Stores">
+  <section class="Stores container">
     <div class="row">
       @foreach ($store as $item)
       <div class="col-lg-4 col-md-6  img-text">

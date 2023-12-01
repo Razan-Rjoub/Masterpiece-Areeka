@@ -96,14 +96,6 @@
                                 </div>
 
                                 <div class="mb-4">
-                                    <label for="status" class="form-label">Status</label>
-                                    <select class="form-select" id="status" aria-label="Default select example"
-                                        name="status">
-                                        <option value="active">ACTIVE</option>
-                                        <option value="pending">PENDING</option>
-                                    </select>
-                                </div>
-                                <div class="mb-4">
                                     <label for="description" class="form-label">description</label>
                                     <textarea class="form-control" id="description" rows="3" placeholder="Product Description" name="description"></textarea>
                                     @error('description')
@@ -158,6 +150,15 @@
                                     @error('qualitycheck')
                                         <span style="color: red">{{ $message }}</span>
                                     @enderror
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="status" class="form-label">Status</label>
+                                    <select class="form-select" id="status" aria-label="Default select example"
+                                        name="status">
+                                        <option value="active">ACTIVE</option>
+                                        <option value="pending">PENDING</option>
+                                    </select>
                                 </div>
                                 <div class="form-check form-switch mb-4">
                                     <label class="form-check-label" for="flexSwitchCheckChecked">Stock</label>

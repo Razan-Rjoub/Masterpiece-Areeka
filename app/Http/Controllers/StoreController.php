@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Store;
 use App\Http\Requests\StoreStoreRequest;
 use App\Http\Requests\UpdateStoreRequest;
+use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -15,16 +16,16 @@ class StoreController extends Controller
 
     public function index()
     {
-        if (Auth::check()) {
-            $role = Auth::user()->Role;
-            if ($role == 'admin' || $role == 'customer') {
-                $store = Store::all();
-                return view('Stores.store', compact('store'));
-            }
-        } 
         $store = Store::all();
-        return view('Stores.store', compact('store'));
         
+        if(Auth::id()){
+            $user=User::find(Auth::id());
+            if($user->Role=='admin'){
+                return view('Admin.store.store', compact('store'));
+            }
+            else  return view('Stores.store', compact('store'));
+        }
+        return view('Stores.store', compact('store'));
     }
 
     public function create()
