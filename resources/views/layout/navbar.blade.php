@@ -179,7 +179,7 @@
                                 </li>
 
                                 <li class="nav-item {{ request()->routeIs('contact') ? 'active' : '' }}">
-                                    <a class="nav-link " href="{{ route('contact') }}">Contact</a>
+                                    <a class="nav-link " href="{{asset('/contact')}}">Contact</a>
                                 </li>
                             </ul>
                         </div>

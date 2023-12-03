@@ -2,9 +2,9 @@
 /**************** extend css start ****************/
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap");
 /* line 2, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_extends.scss */
-.btn_2, .form-contact .form-group .btn_1 i {
+/* .btn_2, .form-contact .form-group .btn_1 i {
   background-image: linear-gradient(16deg, #FFC713 0%, #ff5d2d 64%, #ffba00 100%);
-}
+} */
 
 /* line 10, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_extends.scss */
 .form-contact .form-group .btn_1 {
@@ -491,7 +491,7 @@ ul {
   display: inline-block;
   padding: 9px 42px;
   border-radius: 50px;
-  background-color: #ffba00;
+  background-color: #FFC713;
   font-size: 15px;
   font-weight: 700;
   color: white;

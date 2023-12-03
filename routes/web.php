@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\PaypalController;
@@ -57,9 +58,7 @@ Route::get('/about', function () {
     return view('aboutus.about');
 })->name('about');
 // ** Contact **/
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+
 // **          Admin          ***/
 
 
@@ -138,3 +137,6 @@ Route::get('stripe/cancel', [StripeController::class, 'cancel'])->name('stripe_c
 Route::get('stripe/success', [StripeController::class, 'success'])->name('stripe_success');
 // Route::get('/success', [PaypalController::class, 'successview'])->name('paysuccess');
 // Route::get('/cancell', [PaypalController::class, 'cancelview'])->name('cancel');
+// ***** contact ******//
+
+Route::resource('contact', ContactController::class);
