@@ -82,7 +82,6 @@ class CartController extends Controller
                 'user_id' => Auth::id(),
 
             ]);
-           
             foreach ($cart as $item) {
                 OrderItem::create([
                     'order_id' => $order->id,

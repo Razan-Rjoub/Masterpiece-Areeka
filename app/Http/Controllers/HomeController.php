@@ -15,7 +15,6 @@ class HomeController extends Controller
     public function index()
     {
         $category = Category::take(4)->get();
-
         $store = Store::take(4)->get();
         $highestProductCounts = OrderItem::groupBy('product_id')
             ->selectRaw('product_id, MAX(quantity) as max_count')
@@ -24,7 +23,7 @@ class HomeController extends Controller
             ->pluck('max_count', 'product_id');
         $highestProducts = [];
         foreach ($highestProductCounts as $productId => $maxCount) {
-            $product = Product::find($productId);
+            $product = Product::where('status','active')->find($productId);
             if ($product) {
                 $highestProducts[] = $product;
             }

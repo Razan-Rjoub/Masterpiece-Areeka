@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Store;
 use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use Auth;
 
 class ProviderController extends Controller
 {
@@ -14,17 +15,20 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        $provider= User::where('Role','provider')->get();
-        return view('Admin.provider.provider',compact('provider'));
+        if (Auth::check()) {
+            $user = Auth::user();
+            $role = $user->Role ?? null;
+            if ($role == 'admin') {
+                $provider = User::where('Role', 'provider')->get();
+                return view('Admin.provider.provider', compact('provider'));
+            }
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $store=Store::all();
-       return view('Admin.provider.Addprovider',compact('store'));
+        $store = Store::all();
+        return view('Admin.provider.Addprovider', compact('store'));
     }
 
     public function store(Request $request)
@@ -32,7 +36,7 @@ class ProviderController extends Controller
         $request->validate([
             'providername' => 'required|string',
             'image' => 'image|mimes:jpeg,png,jpg,gif,jfif',
-            'address'=>'required',
+            'address' => 'required',
             'email' => 'required|email|unique:users',
             'password' => [
                 'required',
@@ -45,8 +49,7 @@ class ProviderController extends Controller
         if ($request->hasFile('image')) {
             $filename = $request->getSchemeAndHttpHost() . '/images/provider/' . time() . '.' . $request->image->extension();
             $request->image->move(public_path('/images/provider/'), $filename);
-        }
-        else {
+        } else {
             unset($request->image);
         }
         $store = $request->input('store');
@@ -55,12 +58,12 @@ class ProviderController extends Controller
         User::create([
             'name' => $request->providername,
             'image' => $filename,
-            'Address' =>$request->address,
+            'Address' => $request->address,
             'email' => $request->email,
-            'password'=>bcrypt($request->password),
-            'Role'=>'provider',
-            'store'=>$id,
-            'storename'=>$name
+            'password' => bcrypt($request->password),
+            'Role' => 'provider',
+            'store' => $id,
+            'storename' => $name
         ]);
         Alert::success('success', 'Provider Added Successfully');
         return redirect('provider');
@@ -77,9 +80,9 @@ class ProviderController extends Controller
     {
 
         $user = User::find($id);
-        $userrole=User::all();
-        
-        return view('Admin.provider.edit',compact('user','userrole'));
+        $userrole = User::all();
+
+        return view('Admin.provider.edit', compact('user', 'userrole'));
     }
 
     /**
@@ -87,13 +90,14 @@ class ProviderController extends Controller
      */
     public function update(Request $request, $id)
     {
-      
+
         $data['Role'] = $request->role_id;
-     
-        User::where(['id' => $id])->update( $data
-    );
-    Alert::success('success', 'Provider Updated Successfully');
-    return redirect('provider');
+
+        User::where(['id' => $id])->update(
+            $data
+        );
+        Alert::success('success', 'Provider Updated Successfully');
+        return redirect('provider');
     }
 
 
@@ -102,6 +106,6 @@ class ProviderController extends Controller
         User::find($id)->delete();
         User::destroy($id);
         Alert::success('success', 'provider Deleted Successfully');
-    return redirect('provider');
+        return redirect('provider');
     }
 }

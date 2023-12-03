@@ -79,7 +79,7 @@ Route::middleware(['auth', 'verified', 'checkRole:admin,provider'])->group(funct
     Route::get('/adminn', function () {
         return view('Admin.index');
     })->name('index');
-    Route::get('/vendor', function () {
+    Route::get('/vendors', function () {
         return view('Provider.index');
     });
 });
@@ -90,7 +90,7 @@ Route::get('/editorder/{id}', [OrderController::class, 'editorder'])->name('edit
 // **      Home **/
 Route::get('/', [HomeController::class, 'index'])->name('home');
 // **      Store **/
-Route::get('/stores', [StoreController::class, 'index'])->name('store');
+Route::get('/stores', [StoreController::class, 'stores'])->name('store');
 // **      Product     *** /
 Route::get('/products/{id}', [ProductController::class, 'products'])->name('product');
 Route::get('/products/{id}/{price}', [ProductController::class, 'fillterproducts'])->name('fillter');
@@ -99,6 +99,7 @@ Route::get('/product-Category/{id}/{store_id}', [ProductController::class, 'prod
 Route::get('/singleproduct/{id}', [ProductController::class, 'singleproduct'])->name('singleproduct');
 // ****    Wishlist **/
 Route::get('/wishlist/{id}', [WishlistController::class, 'create'])->name('wishlist');
+Route::get('/wishlistcart/{id}', [WishlistController::class, 'wishlistcart'])->name('wishlistcart');
 Route::get('/wishlist', [WishlistController::class, 'index'])->name('wish');
 Route::get('/wishlistremove/{id}', [WishlistController::class, 'destroy'])->middleware(['auth', 'verified'])->name('wishlistremove');
 // ***     Cart  **/

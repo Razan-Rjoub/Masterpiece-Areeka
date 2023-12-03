@@ -106,6 +106,8 @@
 <script src="{{ asset('js/stellar.js') }}"></script>
 <!-- custom js -->
 <script src="{{ asset('js/theme.js') }}"></script>
+{{-- ******************************* --}}
+
 </body>
 
 </html>

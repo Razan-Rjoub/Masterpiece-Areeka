@@ -160,7 +160,7 @@
                         </div>
                         <div class="col-md-10 form-group p_star">
                             <input type="text" class="form-control" id="phone" name="phone"
-                                value="{{ $user->phone }}" />
+                                value="{{ $user->phone }}" placeholder="phone"/>
                             @error('phone')
                                 <span style="color: red">{{ $message }}</span>
                             @enderror

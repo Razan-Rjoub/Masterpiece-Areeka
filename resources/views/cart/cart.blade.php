@@ -211,33 +211,35 @@
     </div> --}}
     <br><br>
     @if (session('cartPageReloaded'))
-    <script>
-        // Reload the page after a short delay (e.g., 1 second)
-        setTimeout(function() {
-            location.reload();
-        }, 1000);
+        <script>
+            // Reload the page after a short delay (e.g., 1 second)
+            setTimeout(function() {
+                location.reload();
+            }, 1000);
 
-        @php session()->forget('cartPageReloaded') @endphp
-    </script>
-@endif
+            @php session()->forget('cartPageReloaded') @endphp
+        </script>
+    @endif
     <section class="cart_area padding_top mt-5">
         <div class="container">
             @include('sweetalert::alert')
             <div class="cart_inner">
-                
+
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
+                                @if (Auth::id())
+                                <th scope="col"></th>@endif
                                 <th scope="col">Product</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Total</th>
-                               
+
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                             @php
                                 $total = 0;
                             @endphp
@@ -279,9 +281,8 @@
                                             <h5> {{ $details['price'] * $details['quantity'] }}JOD </h5>
                                         </td>
                                         <td>
-                                            <a
-                                            href="{{ route('deletecart', ['item' => $item]) }}">
-                                            <i class="ti-trash"></i>
+                                            <a href="{{ route('deletecart', ['item' => $item]) }}">
+                                                <i class="ti-trash"></i>
                                             </a>
                                         </td>
 
@@ -292,10 +293,22 @@
                                     @php $total = 0; @endphp
                                     @foreach ($usercart as $item)
                                         <tr>
+                                            <td> <a href="{{ route('wishlistcart', ['id' => $item->product->id]) }}"
+                                                    class="like_us">
 
+                                                    <svg style="color: red" xmlns="http://www.w3.org/2000/svg" width="40" height="20"
+                                                        fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                                    </svg>
+
+                                                </a></td>
                                             <td>
+
                                                 <div class="media">
+
                                                     <div class="d-flex">
+
                                                         <img style="width:100px" src="{{ asset($item->product->image) }}"
                                                             alt="" />
                                                     </div>
@@ -309,13 +322,15 @@
                                             </td>
                                             <td>
                                                 <div class="product_count">
-                                                    <a href="{{ route('quantitycart', ['id' => $item, 'type' => 'minus']) }}">
+                                                    <a
+                                                        href="{{ route('quantitycart', ['id' => $item, 'type' => 'minus']) }}">
                                                         <span class="input-number-decrement"> <i
                                                                 class="ti-angle-down"></i></span></a>
                                                     <input class="input-number" type="text"
                                                         value="{{ $item->quantity }}" min="0" max="10">
-    
-                                                    <a href="{{ route('quantitycart', ['id' => $item, 'type' => 'plus']) }}"><span
+
+                                                    <a
+                                                        href="{{ route('quantitycart', ['id' => $item, 'type' => 'plus']) }}"><span
                                                             class="input-number-increment"> <i
                                                                 class="ti-angle-up"></i></span></a>
                                                 </div>
@@ -324,9 +339,8 @@
                                                 <h5>{{ $item->Totalprice }}JOD</h5>
                                             </td>
                                             <td>
-                                                <a
-                                                href="{{ route('deletecart', ['item' => $item->id]) }}">
-                                                <i class="ti-trash"></i>
+                                                <a href="{{ route('deletecart', ['item' => $item->id]) }}">
+                                                    <i class="ti-trash"></i>
                                                 </a>
                                             </td>
                                         </tr>
@@ -381,7 +395,7 @@
                         <a class="btn_1" href="/stores">Continue Shopping</a>
                         <a class="btn_1 checkout_btn_1" href="{{ route('checkout') }}">Proceed to checkout</a>
                     </div>
-                    
+
                 </div>
             </div>
     </section>

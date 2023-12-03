@@ -91,7 +91,7 @@ h1{
       <h1>Thank you !</h1>
       <p>Your order has been successfully placed.</p>
       <br>
-      <a class="go-home" href="{{route('home')}}" >
+      <a style="color: white" class="go-home" href="{{route('home')}}" >
       go home
       </a>
     </div>

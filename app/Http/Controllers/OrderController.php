@@ -69,8 +69,11 @@ class OrderController extends Controller
             $role = Auth()->user()->Role;
             if ($role == 'provider') {
                 $data['status'] = $request->status;
+                $order=Order::where('id',$id)->with('payment')->first();
+                $payment=$order->payment->id;
                 if($request->status=='Delivered'){
-                    
+                    $datapay['method'] = 'paypal';
+    Payment::where(['id' => $payment])->update($datapay);
                 }
                 Order::where(['id' => $id])->update(
                     $data

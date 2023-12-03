@@ -5,24 +5,32 @@
 
     <link rel="stylesheet" href="{{ asset('Web/csssingle/style.css') }}">
     <link rel="stylesheet" href="{{ asset('Web/csssingle/single.css') }}">
-<br><br><br><br>
+    <!-- Include Lightbox2 CSS and JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+
+
+    <br><br><br><br>
     <div class="product_image_area section_padding container">
         <div class="">
             @include('sweetalert::alert')
             <div class="row  ">
-                <img class="singleimg" src="{{ asset( $product->image) }}" />
-                <div class="col-lg-2 col-sm-12 col-md-3 imgprod"> 
-                    @if($product->image2 != null)
-                    <img src="{{ asset($product->image2) }}" />
-                    @endif
-                    @if($product->image3 != null)
-                    <img src="{{ asset($product->image3) }}" />
-                    @endif
-                    @if($product->image4 != null)
-                    <img src="{{ asset($product->image4) }}" />
-                    @endif
+                <!-- Main Image -->
+                <img id="mainImage" class="singleimg" src="{{ asset($product->image) }}" data-lightbox="product"
+                    data-title="Main Image" />
+
+                <!-- Thumbnail Images -->
+                <div class="col-lg-2 col-sm-12 col-md-3 imgprod">
+                    @for ($i = 2; $i <= 4; $i++)
+                        @if (!is_null($product->{'image' . $i}))
+                            <a href="{{ asset($product->{'image' . $i}) }}" data-lightbox="product"
+                                data-title="{{$product->name}}">
+                                <img class="thumbnail" src="{{ asset($product->{'image' . $i}) }}" />
+                            </a>
+                        @endif
+                    @endfor
                 </div>
-                
+
+
 
                 <div class="col-lg-5 col-xl-4">
                     <div class="s_product_text">
@@ -44,17 +52,22 @@
                         </p>
                         <div class="card_area d-flex justify-content-between align-items-center row">
                             @include('sweetalert::alert')
-                            
-                            <a href="{{ route('addtocart', ['id' => $product->id]) }}" class="btn-add " style="width:300px;font-size:20px">ADD TO CART</a>
+
+                            <a href="{{ route('addtocart', ['id' => $product->id]) }}" class="btn-add "
+                                style="width:300px;font-size:20px">ADD TO CART</a>
                             <a href="{{ route('wishlist', ['id' => $product->id]) }}" class="like_us">
                                 @if ($wishlist)
-                                <svg style="color: #ffc713" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                                  </svg>
+                                    <svg style="color: #ffc713" xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                    </svg>
                                 @else
-                                <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                                  </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                    </svg>
                                 @endif
                             </a>
                         </div>
@@ -93,12 +106,19 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
-      $(document).ready(function() {
-        // Assuming you have the count in a variable named cartCount
-        var cartCount = @if(session('cart')) {{ count(session('cart')) }} @else 0 @endif;
-        
-        // Update the content dynamically
-        $('#cartItemCount').text(cartCount);
-      });
+        $(document).ready(function() {
+            // Assuming you have the count in a variable named cartCount
+            var cartCount =
+                @if (session('cart'))
+                    {{ count(session('cart')) }}
+                @else
+                    0
+                @endif ;
+
+            // Update the content dynamically
+            $('#cartItemCount').text(cartCount);
+        });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
 @endsection

@@ -14,7 +14,7 @@
                         
                     
                     <div class="single_product_item">
-                        <a href="{{ route('singleproduct', ['id' => $item->id]) }}"><img src="{{$item->image}}" alt=""></a>
+                        <a href="{{ route('singleproduct', ['id' => $item->id]) }}"><img style="height: 350px" src="{{$item->image}}" alt=""></a>
                         <div class="single_product_text">
                             <h4>{{$item->name}}</h4>
                             <h3>{{$item->price}}JOD</h3>

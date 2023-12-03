@@ -221,21 +221,21 @@ class ProductController extends Controller
             $store = Store::find($id);
             $category = Category::where('store_id', $id)->get();
             $product = Product::where('store_id', $id)
-                ->whereBetween('price', [$minPrice, $maxPrice])
+                ->whereBetween('price', [$minPrice, $maxPrice])->where('status','active')
                 ->get();
         } else if ($price == "Low") {
             $store = Store::find($id);
             $product = Product::where('store_id', $id)
-                ->orderby('price', 'asc')
+                ->orderby('price', 'asc')->where('status','active')
                 ->get();
         } else if ($price == "High") {
             $store = Store::find($id);
             $product = Product::where('store_id', $id)
-                ->orderby('price', 'desc')
+                ->orderby('price', 'desc')->where('status','active')->with('category')
                 ->get();
         } else if ($price) {
             $store = Store::find($id);
-            $product = Product::where('store_id', $id)->where('category_id', $price)->get();
+            $product = Product::where('store_id', $id)->where('category_id', $price)->where('status','active')->with('category')->get();
         }
         $category = Category::where('store_id', $id);
         return view('Product.product', compact('product', 'store', 'category'));

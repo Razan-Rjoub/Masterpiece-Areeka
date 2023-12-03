@@ -15,7 +15,7 @@
                                     <div class="banner_text">
                                         <div class="banner_text_iner">
                                             <center>
-                                                <h1>Furnish your dream with our<br> furniture!</h1>
+                                                <h1>Furnish your dream with <br> our furniture!</h1>
                                                 <p>Unleash your creativity with our versatile
                                                     stores options.
                                                     Experience comfort and quality with our furniture</p>

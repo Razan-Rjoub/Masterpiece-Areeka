@@ -26,10 +26,23 @@ class WishlistController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+public function wishlistcart($id){
+    
+    $wishlist = Wishlist::where('user_id', Auth::id())
+    ->where('product_id', $id)
+    ->first();
+    if ($wishlist) {
+        $wishlist->delete();}
+        else{
+            Wishlist::create([
+                'user_id' => Auth::id(),
+                'product_id' => $id,
+            ]);    
+        }
+        return redirect()->back();
+}
     public function create($id)
     {
-
-
         if (Auth::id()) {
 
             $wishlist = Wishlist::where('user_id', Auth::id())
@@ -87,7 +100,6 @@ class WishlistController extends Controller
         } else {
             session()->put('wishlist', $id);
             Alert::error('You must login first!')->autoClose()->footer('<a href="' . route("register") . '">Sign in here ?</a>');
-
             return redirect()->back();
         }
 

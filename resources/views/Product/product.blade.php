@@ -90,13 +90,14 @@
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
-                                    @foreach ($category as $item)
-                                        <li>
-                                            <a
-                                                href="{{ route('fillter', ['id' => $store->id, 'price' => $item->id]) }}">{{ $item->name }}</a>
-
-                                        </li>
-                                    @endforeach
+                                    @foreach ($product->unique('category_id') as $item)
+                                    <li>
+                                        <a href="{{ route('fillter', ['id' => $store->id, 'price' => $item->category->id]) }}">
+                                            {{ $item->category->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                                
                                 </ul>
                             </div>
                         </aside>
@@ -109,7 +110,7 @@
                                 <ul class="list">
                                     <li>
                                         <a
-                                            href="{{ route('fillter', ['id' => $store->id, 'price' => '0-299']) }}">0JD-299JD</a>
+                                            href="{{ route('fillter', ['id' => $store->id, 'price' => '0-299',]) }}">0JD-299JD</a>
                                     </li>
                                     <li>
                                         <a

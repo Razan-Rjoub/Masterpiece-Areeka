@@ -15,6 +15,27 @@ class ProductSeeder extends Seeder
         DB::table('products')->insert([
             [
                 'id' => 1,
+                'name' => 'Sofa Chair',
+                'image' => 'http://127.0.0.1:8000/images/seeder/product/sofa1.jpg',
+                'price' => 50,
+                'stock' => 'on',
+                'descrption' => 'This is a comfortable Sofa chair with a sleek design.',
+                'descrptionLong' => ' Elevate your comfort with our premium Sofa chair. 
+            Its ergonomic design provides excellent lumbar support, 
+            making it the perfect addition to your home or office. 
+            The high-quality leather ensures durability and style.',
+                'width' => '200',
+                'height' => '700',
+                'Depth' => '450',
+                'Weight' => '500',
+                'Qualitycheck' => 'yes',
+                'quantity' => 10,
+                'store_id' => 1,
+                'category_id' => 1,
+                'status' => 'active',
+            ],
+            [
+                'id' => 4,
                 'name' => 'Leather Chair',
                 'image' => 'http://127.0.0.1:8000/images/seeder/product/chair1.jpg',
                 'price' => 30,
@@ -55,48 +76,27 @@ class ProductSeeder extends Seeder
                 'category_id' => 2,
                 'status' => 'active',
             ],
-            [
-                'id' => 2,
-                'name' => 'Sofa Chair',
-                'image' => 'http://127.0.0.1:8000/images/seeder/product/sofa1.jpg',
-                'price' => 50,
-                'stock' => 'on',
-                'descrption' => 'This is a comfortable Sofa chair with a sleek design.',
-                'descrptionLong' => ' Elevate your comfort with our premium Sofa chair. 
-            Its ergonomic design provides excellent lumbar support, 
-            making it the perfect addition to your home or office. 
-            The high-quality leather ensures durability and style.',
-                'width' => '200',
-                'height' => '700',
-                'Depth' => '450',
-                'Weight' => '500',
-                'Qualitycheck' => 'yes',
-                'quantity' => 10,
-                'store_id' => 1,
-                'category_id' => 1,
-                'status' => 'active',
-            ],
+            
         ]);
         DB::table('products')->insert([
-            'id' => 4,
-            'name' => 'TV MOUNT',
-            'image' => 'http://127.0.0.1:8000/images/seeder/product/wall.jpg',
-            'image2' => 'http://127.0.0.1:8000/images/seeder/product/wall2.jpg',
-            'price' => 150,
-            'stock' => 'on',
-            'descrption' => 'This is a TV MOUNT with a sleek design.',
-            'descrptionLong' => ' Elevate  with our premium TV MOUNT . 
-        Its ergonomic design provides excellent lumbar support, 
-        making it the perfect addition to your home or office. 
-        The high-quality leather ensures durability and style.',
-            'width' => '100',
-            'height' => '680',
-            'Depth' => '570',
-            'Weight' => '900',
+            'id' => 2,
+            'name' => 'Master BedRoom',
+            'image' => 'http://127.0.0.1:8000/images/seeder/product/masterbedroom.jpg',
+            'image2' => 'http://127.0.0.1:8000/images/seeder/product/masterbedroom2.jpg',
+            'image3' => 'http://127.0.0.1:8000/images/seeder/product/masterbedroom3.jpg',
+            'image4' => 'http://127.0.0.1:8000/images/seeder/product/masterbedroom4.jpg',
+            'price' => 3000,
+            'stock' => 'off',
+            'descrption' => 'Vandana Interiors Modern White Makeup Vanity Expandable Dressing Table with Cabinet Mirror & Stool Included',
+            'descrptionLong' => 'Vandana Interiors Modern White Makeup Vanity Expandable Dressing Table with Cabinet Mirror & Stool Included',
+            'width' => '760',
+            'height' => '340',
+            'Depth' => '120',
+            'Weight' => '780',
             'Qualitycheck' => 'yes',
-            'quantity' => 12,
+            'quantity' => 30,
             'store_id' => 1,
-            'category_id' => 4,
+            'category_id' =>6,
             'status' => 'active',
         ]);
         DB::table('products')->insert([
@@ -139,6 +139,28 @@ class ProductSeeder extends Seeder
             'category_id' =>6,
             'status' => 'active',
         ]);
+         DB::table('products')->insert([
+            'id' => 12,
+            'name' => 'TV MOUNT',
+            'image' => 'http://127.0.0.1:8000/images/seeder/product/wall.jpg',
+            'image2' => 'http://127.0.0.1:8000/images/seeder/product/wall2.jpg',
+            'price' => 150,
+            'stock' => 'on',
+            'descrption' => 'This is a TV MOUNT with a sleek design.',
+            'descrptionLong' => ' Elevate  with our premium TV MOUNT . 
+        Its ergonomic design provides excellent lumbar support, 
+        making it the perfect addition to your home or office. 
+        The high-quality leather ensures durability and style.',
+            'width' => '100',
+            'height' => '680',
+            'Depth' => '570',
+            'Weight' => '900',
+            'Qualitycheck' => 'yes',
+            'quantity' => 12,
+            'store_id' => 1,
+            'category_id' => 4,
+            'status' => 'active',
+        ]);
 // **** Meem
         DB::table('products')->insert([
             'id' => 7,
@@ -179,26 +201,7 @@ class ProductSeeder extends Seeder
             'category_id' =>8,
             'status' => 'active',
         ]);
-        DB::table('products')->insert([
-            'id' => 9,
-            'name' => 'Sofa Bed',
-            'image' => 'http://127.0.0.1:8000/images/seeder/product/sofabed.jpg',
-            'image2' => 'http://127.0.0.1:8000/images/seeder/product/sofabed2.jpg',
-            'image3' => 'http://127.0.0.1:8000/images/seeder/product/sofabed3.jpg',
-            'price' => 100,
-            'stock' => 'off',
-            'descrption' => 'Natural Marble Oval Tea Table Scale Living Room Coffee Table Brushed Brass Coffee Table Black Glass Surface',
-            'descrptionLong' => 'Relax on your sofa inside and feel the breeze on your face thanks to the rooms open, airy design; youll feel like youre in the middle of nature. This living room is everything you are looking for!',
-            'width' => '465',
-            'height' => '123',
-            'Depth' => '453',
-            'Weight' => '657',
-            'Qualitycheck' => 'yes',
-            'quantity' => 14,
-            'store_id' => 2,
-            'category_id' =>8,
-            'status' => 'active',
-        ]);
+       
         DB::table('products')->insert([
             'id' => 10,
             'name' => 'Oval Table',
@@ -221,7 +224,7 @@ class ProductSeeder extends Seeder
 
         DB::table('products')->insert([
             'id' => 11,
-            'name' => 'Barstool Seat',
+            'name' => 'Living Room',
             'image' => 'http://127.0.0.1:8000/images/seeder/product/Chair.jpg',
             'price' => 45,
             'stock' => 'off',
@@ -237,5 +240,26 @@ class ProductSeeder extends Seeder
             'category_id' =>2,
             'status' => 'active',
         ]);
+        DB::table('products')->insert([
+            'id' => 9,
+            'name' => 'Barstool Seat',
+            'image' => 'http://127.0.0.1:8000/images/seeder/product/living.jpg',
+            'image2' => 'http://127.0.0.1:8000/images/seeder/product/living2.jpg',
+            'image3' => 'http://127.0.0.1:8000/images/seeder/product/living3.jpg',
+            'price' => 45,
+            'stock' => 'off',
+            'descrption' => 'Eames Style Bar 31" Stool, Yellow w/Tall Wooden Base',
+            'descrptionLong' => 'Beautiful Addition to your Home! Free Shipping on everything! Receive Coupons for life for future purchases on any product in our store!',
+            'width' => '123',
+            'height' => '123',
+            'Depth' => '345',
+            'Weight' => '768',
+            'Qualitycheck' => 'yes',
+            'quantity' => 13,
+            'store_id' => 2,
+            'category_id' =>8,
+            'status' => 'active',
+        ]);
+
     }
 }

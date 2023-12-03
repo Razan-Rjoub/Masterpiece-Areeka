@@ -201,7 +201,7 @@
             <!-- Menu -->
 
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-                <img src="{{ asset('Admin/images/areeka.png') }}" alt="">
+                <img src="{{ asset('images/areeka.png') }}" alt="">
 
                 <div class="menu-inner-shadow"></div>
 

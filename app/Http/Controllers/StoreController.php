@@ -14,20 +14,23 @@ use RealRashid\SweetAlert\Facades\Alert;
 class StoreController extends Controller
 {
 
-    public function index()
+    public function stores()
     {
         $store = Store::all();
         
-        if(Auth::id()){
-            $user=User::find(Auth::id());
-            if($user->Role=='admin'){
-                return view('Admin.store.store', compact('store'));
-            }
-            else  return view('Stores.store', compact('store'));
-        }
+       
         return view('Stores.store', compact('store'));
     }
-
+public function index(){
+    $store = Store::all();
+        
+    if(Auth::id()){
+        $user=User::find(Auth::id());
+        if($user->Role=='admin'){
+            return view('Admin.store.store', compact('store'));
+        }
+    }
+}
     public function create()
     {
         return view('Admin.store.Addstore');
