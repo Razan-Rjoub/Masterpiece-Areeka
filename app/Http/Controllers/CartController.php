@@ -10,6 +10,7 @@ use App\Models\OrderItem;
 use App\Models\Payment;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Wishlist;
 use Auth;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -22,8 +23,12 @@ class CartController extends Controller
     public function index()
     {
         $usercart = Cart::where('user_id', Auth::id())->with('product')->get();
-
+        $wishlist = Wishlist::where('user_id', Auth::id())
+        ->with('product')
+        ->get();
+        
         if (Auth::id()) {
+         
             $cartData = session()->get('cart', []);
             foreach ($cartData as $cartItem) {
                 Cart::create([
@@ -40,13 +45,10 @@ class CartController extends Controller
             session()->forget('cart');
             $cart = Cart::where('user_id', Auth::id())->first();
 
-            // if ($cart) {
-            return view('cart.cart', compact('usercart'))->with('reload', true);
-            // } else {
-            // return view('cart.cart', compact('usercart'));
-            // }
+            return view('cart.cart', compact('usercart','wishlist'))->with('reload', true);
+
         } else
-            return view('cart.cart', compact('usercart'));
+            return view('cart.cart', compact('usercart','wishlist'));
 
     }
     public function create(Request $request)

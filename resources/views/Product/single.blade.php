@@ -3,14 +3,28 @@
 
 @section('content')
 
-    <link rel="stylesheet" href="{{ asset('Web/csssingle/style.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('Web/csssingle/style.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('Web/csssingle/single.css') }}">
     <!-- Include Lightbox2 CSS and JS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
-
+    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <h2>Single Product</h2>
+                            <p><a href="/" style="color:#777777">Home</a> <span>-</span>
+                                    Single Product</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <br><br><br><br>
-    <div class="product_image_area section_padding container">
+    <div class="product_image_area container">
         <div class="">
             @include('sweetalert::alert')
             <div class="row  ">
@@ -23,7 +37,7 @@
                     @for ($i = 2; $i <= 4; $i++)
                         @if (!is_null($product->{'image' . $i}))
                             <a href="{{ asset($product->{'image' . $i}) }}" data-lightbox="product"
-                                data-title="{{$product->name}}">
+                                data-title="{{ $product->name }}">
                                 <img class="thumbnail" src="{{ asset($product->{'image' . $i}) }}" />
                             </a>
                         @endif

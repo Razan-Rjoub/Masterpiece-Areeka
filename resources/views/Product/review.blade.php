@@ -61,7 +61,7 @@
                                 <div class="review_item @if ($key >= 2) hidden-review @endif">
                                     <div class="media">
                                         <div class="d-flex">
-                                            <img src="{{ $item->user->image }}" alt="" />
+                                            <img src="{{ asset($item->user->image) }}" alt="" />
                                         </div>
                                         <div class="media-body">
                                             <h4>{{ $item->user->name }} </h4>

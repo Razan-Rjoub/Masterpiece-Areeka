@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-around">
             <div class="col-sm-6 col-lg-3">
-                <img style="width: 130px" src="{{ asset('images/footer.png') }}">
+                <img style="width: 130px" src="{{ asset('images/areeka2.png') }}">
               
             </div>
             <div class="col-sm-6 col-lg-3">

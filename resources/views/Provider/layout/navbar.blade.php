@@ -42,7 +42,7 @@
     <!-- End Google Tag Manager -->
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="images/web.png" />
+    <link rel="icon" type="image/x-icon" href="images/areeka2.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -75,7 +75,7 @@
     <!-- End Google Tag Manager -->
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../../images/web.png" />
+    <link rel="icon" type="image/x-icon" href="images/areeka2.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">

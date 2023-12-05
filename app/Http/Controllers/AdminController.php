@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Product;
+use App\Models\Store;
 use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use Auth;
 
 class AdminController extends Controller
 {
@@ -20,6 +24,29 @@ class AdminController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+    public function dashboard(){
+        $product= Product::count();
+        $order= Order::count();
+        $user= User::where('Role','customer')->count();
+        $admin= User::where('Role','admin')->count();
+        $provider= User::where('Role','provider')->count();
+        $store= Store::count();
+        $order_item=Order::with('user')->take(10)->get();
+
+        return view('Admin.index',compact('product','user','admin','provider','store','order','order_item'));
+    }
+
+    public function vendor(){
+        if(Auth::id()){
+        
+        $user=User::find(Auth::id());
+        $store=$user->store;
+        $product= Product::where('store_id',$store)->count();
+       
+        $order_item=OrderItem::with('user')->where('store_id',$store)->take(10)->get();
+
+        return view('Provider.index',compact('product','order_item'));}
+    }
     public function create()
     {
         

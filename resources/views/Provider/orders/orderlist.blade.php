@@ -24,17 +24,17 @@
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                            @foreach ($order as $item)
+                            @foreach ($orderitem as $item)
                                 <tr>
-                                    <td>#{{ $item->id }} </td>
-                                    <td>{{ $item->created_at }} </td>
+                                    <td>#{{ $item->order->id }} </td>
+                                    <td>{{ $item->order->created_at }} </td>
                                     <td><img src="{{ $item->user->image }}"
                                             alt=""class="w-px-40 h-auto rounded-circle">
                                         <span>{{ $item->user->name }} </span>
                                     </td>
 
                                     <td>
-                                        @if ($item->payment->method=='paypal')
+                                        @if ($item->order->payment->method=='paypal')
                                             <h6 class="mb-0 text-success w-px-100">
                                                 <i class="mdi mdi-circle mdi-14px me-2"></i>
                                                 Paid
@@ -46,13 +46,13 @@
                                             </h6>
                                         @endif
                                     </td>
-                                    @if ($item->status == 'Delivered')
+                                    @if ($item->order->status == 'Delivered')
                                         <td><span class="badge bg-label-success me-1">Delivered</span></td>
                                     @endif
-                                    @if ($item->status == 'out for delivery')
+                                    @if ($item->order->status == 'out for delivery')
                                         <td><span class="badge bg-label-primary me-1">Out For Delivery</span></td>
                                     @endif
-                                    @if ($item->status == 'Dispatched')
+                                    @if ($item->order->status == 'Dispatched')
                                         <td><span class="badge bg-label-warning me-1">Dispatched</span></td>
                                     @endif
                                     {{-- <td>{{ $item->payment->method }} </td> --}}
@@ -65,12 +65,12 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item"
-                                                    href="{{ route('orderdetail', $item->id) }}"><i
+                                                    href="{{ route('orderdetail', $item->order->id) }}"><i
                                                         class="mdi mdi-eye me-1"></i>
                                                     View Details</a>
 
                                                 <a class="dropdown-item"
-                                                    href="{{ route('editorder', $item->id) }}"><i
+                                                    href="{{ route('editorder', $item->order->id) }}"><i
                                                         class="mdi mdi-pen me-1"></i>
                                                     Edit</a>
                                             </div>

@@ -44,7 +44,6 @@ class ContactController extends Controller
 
         session()->flash('success', 'Your Message was Sent Successfully. The Admin will reply to you as soon as possible.');
 
-
         return redirect()->route('contact.index');
     }
 

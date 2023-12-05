@@ -8,36 +8,21 @@
 <link rel="stylesheet" href="{{asset('Web/cssstore/style.css')}}">
 <link rel="stylesheet" href="{{asset('Web/stores.css')}}">
   <br><br>
-
-  <div class="  hero-header mt-5 w-100 " style="width: 100%;">
-      <div class=" ">
-        <div class="row  ">
-
-          <div class="col-lg-12 text-center text-lg-start w-100"style="padding-right:0px">
-            <div class="featured-carousel owl-carousel w-100">
-              <div class="item w-100">
-                <div class="work w-100">
-                  <a href="../Products/Products.html">
-                    <img src="../images/sofaGurgaty.jpg" alt="" style="width: 100%">
-
-                  </a>
-
-                </div>
-              </div>
-              <div class="item">
-                <div class="work">
-                  <a href="../Products/Products.html">
-                    <img src="../images/adlacasa.jpg" alt="">
-
-                  </a>
-                </div>
-              </div>
+  <section class="breadcrumb breadcrumb_bg">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="breadcrumb_iner">
+            <div class="breadcrumb_iner_item">
+              <h2>Stores</h2>
+              <p><a href="/" style="color:#777777">Home</a> <span>-</span>Stores</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  <br><br><br><br><br>
+  </section>
+<br><br><br>
 
   <section class="Stores container">
     <div class="row">

@@ -81,8 +81,8 @@
                                         style="background-color: #4cd3e3;color:white">Delivered</span></td>
                             @endif
                             @if ($item->status == 'out for delivery')
-                                <td class="column-6" style="background-color: #38a4ff;color:white"><span
-                                        class="badge bg-label-primary me-1">Out For
+                                <td class="column-6" ><span
+                                        class="badge bg-label-primary me-1" style="background-color: #38a4ff;color:white">Out For
                                         Delivery</span></td>
                             @endif
                             @if ($item->status == 'Dispatched')

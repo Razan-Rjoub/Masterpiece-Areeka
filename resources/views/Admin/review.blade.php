@@ -33,7 +33,7 @@
                                         <div class="d-flex justify-content-start align-items-center customer-name">
                                             <div class="avatar-wrapper">
                                                 <div class="avatar me-3 rounded-2 bg-label-secondary"><img
-                                                    src="{{ asset('images/product/' . $item->product->image) }}" alt="Product-9" class="rounded-2">
+                                                    src="{{ asset( $item->product->image) }}" alt="Product-9" class="rounded-2">
                                                 </div>
                                             </div>
                                             <div class="d-flex flex-column"><span

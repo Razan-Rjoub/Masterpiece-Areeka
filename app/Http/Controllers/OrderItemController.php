@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Http\Requests\StoreOrderItemRequest;
 use App\Http\Requests\UpdateOrderItemRequest;
+use App\Models\User;
 use Auth;
 
 class OrderItemController extends Controller
@@ -15,12 +16,18 @@ class OrderItemController extends Controller
      */
     public function index($id)
     {
-        $orderitem = OrderItem::where('order_id', $id)->where('user_id',Auth::id())->with(['order','product','user','store'])->get();
-        // dd($orderitem);
-        $order = Order::with('payment')->find($id);
-        // $order=Order::find($id);
-        // dd($order);
-        return view('profilee.orderdetails',compact('orderitem','order'));
+        if(Auth::id()){
+            $user=User::find(Auth::id());
+            if($user->Role=='provider'){
+                $orderitem = OrderItem::where('order_id', $id)->where('user_id',Auth::id())->where('store_id',$user->store)->with(['order','product','user','store'])->get();
+                $order = Order::with('payment')->find($id); 
+                return view('Provider.orders.orderdetail',compact('orderitem','order'));
+            }
+           else{ $orderitem = OrderItem::where('order_id', $id)->where('user_id',Auth::id())->with(['order','product','user','store'])->get();
+            $order = Order::with('payment')->find($id);
+            return view('profilee.orderdetails',compact('orderitem','order'));}
+        }
+
     }
 
     /**

@@ -10,11 +10,12 @@
 
 <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
 
-    <div
-        style="max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <div style="max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
 
         <h2 style="color: #333; text-align: center;">Contact Information</h2>
-
+        <div style="text-align: center;">
+            <a href=""><img src="https://i.ibb.co/x5wzSpK/areeka.png" alt="areeka" border="0" style="width:200px"></a><br /><br />
+        </div>
         <hr style="border-top: 1px solid #ddd;">
 
         <strong>User Details:</strong>

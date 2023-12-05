@@ -15,11 +15,11 @@
     <title>@yield('title')</title>
 
 
-    <meta name="description" content="Start your development with a Dashboard for Bootstrap 5" />
+    <meta name="description" content="" />
     <meta name="keywords"
-        content="dashboard, material, material design, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
+        content="">
     <!-- Canonical SEO -->
-    <link rel="canonical" href="https://themeselection.com/item/materio-bootstrap-html-admin-template/">
+    <link rel="canonical" href="">
 
     {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> --}}
     <!-- ? PROD Only: Google Tag Manager (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
@@ -42,7 +42,7 @@
     <!-- End Google Tag Manager -->
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="images/web.png" />
+    <link rel="icon" type="image/x-icon" href="images/areeka2.png" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -64,7 +64,7 @@
       <!-- End Google Tag Manager -->
       
       <!-- Favicon -->
-      <link rel="icon" type="image/x-icon" href="../../images/web.png" />
+      <link rel="icon" type="image/x-icon" href="images/areeka2.png" />
     
       <!-- Fonts -->
       <link rel="preconnect" href="https://fonts.googleapis.com/">

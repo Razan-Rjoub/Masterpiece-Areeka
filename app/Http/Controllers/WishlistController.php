@@ -39,7 +39,7 @@ public function wishlistcart($id){
                 'product_id' => $id,
             ]);    
         }
-        return redirect()->back();
+        return redirect()->back()->with('wishlist');
 }
     public function create($id)
     {

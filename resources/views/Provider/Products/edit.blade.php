@@ -160,13 +160,7 @@
                                         <span style="color: red">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="mb-4">
-                                    <label for="status" class="form-label">Status</label>
-                                    <select class="form-select" id="status" aria-label="Default select example" name="status">
-                                        <option value="active" {{ $product->status == 'active' ? 'selected' : '' }}>ACTIVE</option>
-                                        <option value="pending" {{ $product->status == 'pending' ? 'selected' : '' }}>PENDING</option>
-                                    </select>
-                                </div>
+
                                 <div class="form-check form-switch mb-4">
                                     <label class="form-check-label" for="flexSwitchCheckChecked">Stock</label>
                                     <input class="form-check-input" type="checkbox" name="stock"

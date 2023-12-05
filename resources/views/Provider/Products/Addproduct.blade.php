@@ -155,19 +155,19 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="qualitycheck">Quality Check</label>
                                     <input type="text" id="qualitycheck" name="qualitycheck"
-                                        class="form-control phone-mask" placeholder="30" />
+                                        class="form-control phone-mask" placeholder="yes/no" />
                                     @error('qualitycheck')
                                         <span style="color: red">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="mb-4">
+                                {{-- <div class="mb-4">
                                     <label for="status" class="form-label">Status</label>
                                     <select class="form-select" id="status" aria-label="Default select example"
                                         name="status">
                                         <option value="active">ACTIVE</option>
                                         <option value="pending">PENDING</option>
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="form-check form-switch mb-4">
                                     <label class="form-check-label" for="flexSwitchCheckChecked">Stock</label>
                                     <input class="form-check-input" type="checkbox" name="stock"

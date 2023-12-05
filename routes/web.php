@@ -75,12 +75,9 @@ Route::middleware(['auth', 'verified', 'checkRole:admin,provider'])->group(funct
     Route::resource('/review', ReviewController::class);
     Route::resource('/adminuser', AdminController::class);
     Route::resource('/provider', ProviderController::class);
-    Route::get('/adminn', function () {
-        return view('Admin.index');
-    })->name('index');
-    Route::get('/vendors', function () {
-        return view('Provider.index');
-    });
+ 
+    Route::get('/adminn', [AdminController::class, 'dashboard'])->name('index');
+    Route::get('/vendors', [AdminController::class, 'vendor']);
 });
 
 
